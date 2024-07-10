@@ -121,14 +121,14 @@ INSERT INTO roles (id, rol) VALUES
 (2, 'TS'),
 (3, 'AT');
 
-INSERT INTO profesional (id, nombre, rol_id, dupla_id) VALUES
-(1, 'Melissa Pulgar', 1, 2),
-(2, 'Marianela Riquelme', 2, 1),
-(3, 'psicologa', 1, 4),
-(4, 'trabajadora social', 2, 3),
-(5, 'Marcela Castro', 1, 6),
-(6, 'Natalia Navarro', 2, 5),
-(7, 'Esteban Olivares', 3, 7)
+INSERT INTO profesional (id, nombre, rol_id, dupla_id, password) VALUES
+(1, 'Melissa Pulgar', 1, 2, 'M18952'),
+(2, 'Marianela Riquelme', 2, 1, 'M15636'),
+(3, 'psicologa', 1, 4, 'P12345'),
+(4, 'trabajadora social', 2, 3, 'T12345'),
+(5, 'Marcela Castro', 1, 6, 'M16296'),
+(6, 'Natalia Navarro', 2, 5, 'N16005'),
+(7, 'Esteban Olivares', 3, 7, 'Recuerd4')
 ;
 
 INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES

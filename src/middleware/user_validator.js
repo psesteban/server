@@ -1,7 +1,7 @@
 export const userValidator = (req, res, next) => {
-  const { email, password } = req.body
-  if (!email || !password) {
-    return res.status(400).json({ error: 'Faltan email y/o password' })
+  const { name, password } = req.body
+  if (!name || !password) {
+    return res.status(400).json({ error: 'Faltan nombre y/o password' })
   }
   next()
 }

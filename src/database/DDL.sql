@@ -47,6 +47,7 @@ CREATE TABLE profesional (
   nombre VARCHAR(60) NOT NULL,
   rol_id Integer,
   dupla_id Integer,
+  password VARCHAR(60) NOT NULL,
   FOREIGN KEY (rol_id) REFERENCES roles(id)
 );
 CREATE TABLE adulto (

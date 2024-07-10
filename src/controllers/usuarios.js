@@ -1,11 +1,13 @@
 import * as sql from '../models/consultas.js'
 
 // GET
-/* export const getCredenciales = (req, res) => sql.verificarCredenciales(req.body)
+
+export const getCredenciales = (req, res) => sql.verificarCredenciales(req.body.name, req.body.password)
   .then((token) => res.status(200).json({ token }))
-  .catch((error) => res.status(500).json(error)
-  ) */
-export const getInformes = (req, res) => sql.informes(req.query.rol, req.query.ps)
+  .catch((error) => res.status(500).json({ error: error.message })
+  )
+
+export const getDatosCredencial = async (req, res) => await sql.buscarDatosProfesional(req.user.nombre)
   .then((result) => res.status(200).json(result))
   .catch((error) => res.status(500).json(error)
   )
