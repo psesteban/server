@@ -13,7 +13,7 @@ export const getDatosCredencial = async (req, res) => await sql.buscarDatosProfe
   )
 
 // POST
-export const postInforme = (req, res) => sql.checkInforme(req.params.id, req.query.rol)
+export const putInforme = (req, res) => sql.checkInforme(req.body.id, req.body.rol)
   .then((result) => res.status(200).json(result))
   .catch((error) => res.status(500).json(error)
   )

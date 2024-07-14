@@ -98,6 +98,7 @@ CREATE TABLE informes (
   numero Integer NOT NULL,
   informe_ps BOOLEAN,
   informe_ts BOOLEAN,
+  url VARCHAR(255),
   FOREIGN KEY (nna_id) REFERENCES nna(id)
 );
 

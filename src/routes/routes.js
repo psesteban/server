@@ -6,5 +6,5 @@ import { userValidator } from '../middleware/user_validator.js'
 const router = Router()
 router.route('/usuario').get(authMiddleware, controller.getDatosCredencial)
 router.route('/login').post(userValidator, controller.getCredenciales)
-router.route('/informes').post(controller.postInforme)
+router.route('/informes').put(controller.putInforme)
 export default router
