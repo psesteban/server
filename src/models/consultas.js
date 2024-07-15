@@ -1,21 +1,42 @@
 import data from './querys.js'
 import jwt from 'jsonwebtoken'
-const { JWT_SECRET } = process.env
+const { JWT_SECRET, JWT_ADMIN } = process.env
 
 export const verificarCredenciales = async (nombre, password) => {
-  const consulta = 'SELECT password FROM profesional WHERE nombre = $1;'
+  const consulta = 'SELECT password, rol_id FROM profesional WHERE nombre = $1;'
   const values = [nombre]
   const usuario = await data(consulta, values)
   if (usuario.length === 0) {
     throw new Error('Usuario no encontrado')
   }
-  const { password: passwordCorrecta } = usuario[0]
+  const { password: passwordCorrecta, rol_id: rol } = usuario[0]
   if (passwordCorrecta !== password) {
     throw new Error('Usuario o contraseña incorrecta')
+  } else if (passwordCorrecta == password && rol == 3) {
+    throw new Error('No tienes la autorización, ingresa como admin')
   }
   const token = jwt.sign({ nombre }, JWT_SECRET)
   return token
 }
+
+export const verificarAdmin = async (nombre, password) => {
+  const consulta = 'SELECT password, rol_id FROM profesional WHERE nombre = $1;'
+  const values = [nombre]
+  const usuario = await data(consulta, values)
+  if (usuario.length === 0) {
+    throw new Error('Usuario no encontrado')
+  }
+  const { password: passwordCorrecta, rol_id: rol } = usuario[0]
+  if (passwordCorrecta !== password) {
+    throw new Error('Usuario o contraseña incorrecta')
+  } else if (passwordCorrecta == password && rol !== 3) {
+    throw new Error('No tienes la autorización, ingresa como usuario')
+  }
+  const token = jwt.sign({ nombre }, JWT_ADMIN)
+  return token
+}
+
+
 const consultaNombre = async (nombreProfesional) => { 
   const consulta = 'SELECT id, rol_id, dupla_id FROM profesional WHERE nombre = $1;'
   const userParams = [nombreProfesional]
@@ -32,9 +53,19 @@ export const buscarDatosProfesional = async (nombre) => {
   const values = [idPsico]
   let consulta = 'SELECT nna.id, nna.nombre, nna.ingreso, informes.numero, informes.informe_ps, informes.informe_ts FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id WHERE psico_id = $1;'
   let resultados = await data(consulta, values)
-  if (rol === '3') {
-    consulta = 'SELECT nna.id, nna.nombre, nna.ingreso, nna.psico_id, informes.numero, informes.informe_ps, informes.informe_ts, profesional.nombre AS tratante FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id JOIN profesional ON nna.psico_id = profesional.id;'
+  if (rol === 3) {
+    consulta = 'SELECT nna.id, nna.nombre, nna.ingreso, informes.numero, informes.informe_ps, informes.informe_ts, profesional.nombre AS tratante FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id JOIN profesional ON nna.psico_id = profesional.id;'
     resultados = await data(consulta)
+    const casos = resultados.map((resultado) => ({
+      nombre: `${resultado.nombre}`,
+      id: resultado.id,
+      informe: resultado.numero,
+      fecha: resultado.ingreso,
+      profesional: resultado.tratante,
+      ps: resultado.informe_ps,
+      ts: resultado.informe_ps
+    }))
+    return {nombre, casos}
   }
 const profesional = {
   nombre: nombre, 

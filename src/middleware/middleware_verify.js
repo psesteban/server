@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-const { JWT_SECRET } = process.env
+const { JWT_SECRET, JWT_ADMIN } = process.env
 
 export const authMiddleware = (req, res, next) => {
   try {
@@ -21,4 +21,20 @@ const verifyToken = (token) => {
   const payload = jwt.verify(token, JWT_SECRET)
   if (!token) { return (401).json({ error: 'incorrect Token' }) }
   return payload
+}
+
+const verifyAdminToken = (token) => {
+  const payload = jwt.verify(token, JWT_ADMIN)
+  if (!token) { return (401).json({ error: 'incorrect Token' }) }
+  return payload
+}
+
+export const authMiddlewareAdmin = (req, res, next) => {
+  try {
+    req.user = verifyAdminToken(extractToken(req))
+    next()
+  } catch (error) {
+    console.log(error)
+    return res.status(401).send({ error: 'Invalid token' })
+  }
 }
