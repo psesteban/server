@@ -12,7 +12,7 @@ export const verificarCredenciales = async (nombre, password) => {
   const { password: passwordCorrecta, rol_id: rol } = usuario[0]
   if (passwordCorrecta !== password) {
     throw new Error('Usuario o contraseña incorrecta')
-  } else if (passwordCorrecta == password && rol == 3) {
+  } else if (passwordCorrecta === password && rol === 3) {
     throw new Error('No tienes la autorización, ingresa como admin')
   }
   const token = jwt.sign({ nombre }, JWT_SECRET)
@@ -29,15 +29,14 @@ export const verificarAdmin = async (nombre, password) => {
   const { password: passwordCorrecta, rol_id: rol } = usuario[0]
   if (passwordCorrecta !== password) {
     throw new Error('Usuario o contraseña incorrecta')
-  } else if (passwordCorrecta == password && rol !== 3) {
+  } else if (passwordCorrecta === password && rol !== 3) {
     throw new Error('No tienes la autorización, ingresa como usuario')
   }
   const token = jwt.sign({ nombre }, JWT_ADMIN)
   return token
 }
 
-
-const consultaNombre = async (nombreProfesional) => { 
+const consultaNombre = async (nombreProfesional) => {
   const consulta = 'SELECT id, rol_id, dupla_id FROM profesional WHERE nombre = $1;'
   const userParams = [nombreProfesional]
   const profesional = await data(consulta, userParams)
@@ -65,14 +64,14 @@ export const buscarDatosProfesional = async (nombre) => {
       ps: resultado.informe_ps,
       ts: resultado.informe_ps
     }))
-    return {nombre, casos}
+    return { nombre, casos }
   }
-const profesional = {
-  nombre: nombre, 
-  id: idProfesional,
-  idRol: rol,
-  tratante: idPsico
-}
+  const profesional = {
+    nombre,
+    id: idProfesional,
+    idRol: rol,
+    tratante: idPsico
+  }
   const datosPs = resultados.map((resultado) => ({
     nombre: `${resultado.nombre}`,
     id: resultado.id,
@@ -89,9 +88,8 @@ const profesional = {
     fecha: resultado.ingreso,
     estado: resultado.informe_ts
   }))
-    if (rol === 1) return {profesional, casos: datosPs}
-       else if (rol === 2) return {profesional, casos: datosTs}
-       
+  if (rol === 1) return { profesional, casos: datosPs }
+  else if (rol === 2) return { profesional, casos: datosTs }
 }
 
 export const checkInforme = async (nna, rol) => {
@@ -113,4 +111,3 @@ export const checkInforme = async (nna, rol) => {
     return error
   }
 }
-
