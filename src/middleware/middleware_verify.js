@@ -13,6 +13,7 @@ export const authMiddleware = (req, res, next) => {
 
 const extractToken = (req, res) => {
   const token = req.headers.authorization?.split(' ')[1]
+  console.log(token)
   if (!token) { return res.status(401).json({ error: 'No token provided' }) }
   return token
 }
@@ -24,6 +25,7 @@ const verifyToken = (token) => {
 }
 
 const verifyAdminToken = (token) => {
+  console.log(token)
   const payload = jwt.verify(token, JWT_ADMIN)
   if (!token) { return (401).json({ error: 'incorrect Token' }) }
   return payload

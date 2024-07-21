@@ -124,7 +124,7 @@ INSERT INTO roles (id, rol) VALUES
 INSERT INTO profesional (id, nombre, rol_id, dupla_id, password) VALUES
 (1, 'Melissa Pulgar', 1, 2, 'M18952'),
 (2, 'Marianela Riquelme', 2, 1, 'M15636'),
-(3, 'psicologa', 1, 4, 'P12345'),
+(3, 'Enzo Montecinos', 1, 4, 'P12345'),
 (4, 'trabajadora social', 2, 3, 'T12345'),
 (5, 'Marcela Castro', 1, 6, 'M16296'),
 (6, 'Natalia Navarro', 2, 5, 'N16005'),
@@ -345,3 +345,11 @@ INSERT INTO informes (nna_id, numero, informe_ps, informe_ts) VALUES
 (1953622, 2, FALSE, FALSE),
 (1954551, 3, FALSE, FALSE),
 (1965676, 3, FALSE, FALSE);
+
+ALTER TABLE informes
+  ADD CONSTRAINT fk_informe_nna
+  FOREIGN KEY (nna_id)
+  REFERENCES nna(id)
+  ON DELETE CASCADE;
+
+  UPDATE nna SET larga_permanencia = false;

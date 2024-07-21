@@ -13,4 +13,8 @@ router.route('/admin')
   .post(userValidator, controller.getAdmin)
   .put(controller.putInforme)
 
+router.route('/informes')
+  .put(authMiddlewareAdmin, controller.putProrroga)
+  .delete(authMiddlewareAdmin, controller.deleteNna)
+
 export default router

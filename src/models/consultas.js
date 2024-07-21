@@ -50,10 +50,10 @@ const consultaNombre = async (nombreProfesional) => {
 export const buscarDatosProfesional = async (nombre) => {
   const { idProfesional, idPsico, rol } = await consultaNombre(nombre)
   const values = [idPsico]
-  let consulta = 'SELECT nna.id, nna.nombre, nna.ingreso, informes.numero, informes.informe_ps, informes.informe_ts FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id WHERE psico_id = $1;'
+  let consulta = 'SELECT nna.id, nna.nombre, nna.ingreso, nna.prorroga, nna.larga_permanencia AS extends, informes.numero, informes.informe_ps, informes.informe_ts FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id WHERE psico_id = $1;'
   let resultados = await data(consulta, values)
   if (rol === 3) {
-    consulta = 'SELECT nna.id, nna.nombre, nna.ingreso, informes.numero, informes.informe_ps, informes.informe_ts, profesional.nombre AS tratante FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id JOIN profesional ON nna.psico_id = profesional.id;'
+    consulta = 'SELECT nna.id, nna.nombre, nna.ingreso, nna.prorroga, nna.larga_permanencia AS extends, informes.numero, informes.informe_ps, informes.informe_ts, profesional.nombre AS tratante FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id JOIN profesional ON nna.psico_id = profesional.id;'
     resultados = await data(consulta)
     const casos = resultados.map((resultado) => ({
       nombre: `${resultado.nombre}`,
@@ -62,9 +62,11 @@ export const buscarDatosProfesional = async (nombre) => {
       fecha: resultado.ingreso,
       profesional: resultado.tratante,
       ps: resultado.informe_ps,
-      ts: resultado.informe_ps
+      ts: resultado.informe_ps,
+      prorroga: resultado.prorroga,
+      hasta: resultado.extends
     }))
-    return { nombre, casos }
+    return { nombre, rol, casos }
   }
   const profesional = {
     nombre,
@@ -78,7 +80,9 @@ export const buscarDatosProfesional = async (nombre) => {
     informe: resultado.numero,
     fecha: resultado.ingreso,
     profesional: idProfesional,
-    estado: resultado.informe_ps
+    estado: resultado.informe_ps,
+    prorroga: resultado.prorroga,
+    hasta: resultado.extends
   }))
 
   const datosTs = resultados.map((resultado) => ({
@@ -86,7 +90,9 @@ export const buscarDatosProfesional = async (nombre) => {
     id: resultado.id,
     informe: resultado.numero,
     fecha: resultado.ingreso,
-    estado: resultado.informe_ts
+    estado: resultado.informe_ts,
+    prorroga: resultado.prorroga,
+    hasta: resultado.extends
   }))
   if (rol === 1) return { profesional, casos: datosPs }
   else if (rol === 2) return { profesional, casos: datosTs }
@@ -107,6 +113,34 @@ export const checkInforme = async (nna, rol) => {
       const values = [nna]
       return await data(consulta, values)
     }
+  } catch (error) {
+    return error
+  }
+}
+
+export const deleteNna = async (id) => {
+  try {
+    console.log(id)
+    const consulta = 'DELETE FROM nna WHERE id = $1 CASCADE;'
+    const values = [id]
+    return await data(consulta, values)
+  } catch (error) {
+    return error
+  }
+}
+
+const cambiarEstadoProrroga = async (id) => {
+  const consulta = 'UPDATE nna SET larga_permanencia = true WHERE id = $1;'
+  const values = [id]
+  await data(consulta, values)
+}
+
+export const insertProrroga = async (date, id) => {
+  try {
+    const consulta = 'UPDATE nna SET prorroga = $1 WHERE id = $2;'
+    const values = [date, id]
+    cambiarEstadoProrroga(id)
+    return await data(consulta, values)
   } catch (error) {
     return error
   }

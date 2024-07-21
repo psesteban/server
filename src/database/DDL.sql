@@ -80,6 +80,8 @@ CREATE TABLE nna (
   nacionalidad_id INTEGER,
   curso_id INTEGER,
   gen_id INTEGER,
+  prorroga DATE,
+  larga_permanencia BOOLEAN,
   FOREIGN KEY (adulto_id) REFERENCES adulto(id),
   FOREIGN KEY (psico_id) REFERENCES profesional(id),
   FOREIGN KEY (salud_id) REFERENCES salud(id),
