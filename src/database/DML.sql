@@ -256,7 +256,6 @@ INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico
 (1930351, 'Mateo Torres Rodriguez', '2018-11-08', '26563108-8', 'Eduardo Aravena Cofré 2053', '2023-07-24', 'X-226-2023', 47, 5, 3, 14, 5, 1, 1, 1, 1, 15, 2),
 (1921785, 'Martina Araya Ponce', '2016-01-12', '25260722-6', 'Bernardino Bravo N°167', '2023-06-27', 'X-166-2023', 48, 5, 3, 7, 4, 1, 1, 1, 1, 3, 1),
 (1927459, 'Martina Acevedo Contreras', '2006-02-23', '22059786-5', 'Parcela 22 A, Sitio 47 Km 4, Lo Cerrillos, Linderos', '2023-11-14', 'P-1520-2022', 49, 5, 3, 4, 1, 1, 10, 1, 1, 10, 1),
-(1735658, 'Genesis Riquelme Caru', '2012-03-15', '23899743-7', 'El Vicario 213, villa Campanario Maipo', '2024-01-22', 'x-367-2019', 50, 5, 3, 5, 1, 1, 1, 1, 1, 7, 1),
 (1920702, 'Josue Riquelme Caru', '2017-08-24', '25879958-5', 'El Vicario 213, villa Campanario Maipo', '2024-01-22', 'x-367-2019', 50, 5, 3, 5, 1, 1, 1, 1, 1, 1, 2),
 (1947416, 'Simon Ernesto Leonard López', '2012-10-26', '24100588-7', 'Guillermo Sandoval 753, Villaseca', '2023-10-31', 'P-928-2023', 51, 5, 3, 4, 1, 1, 1, 1, 1, 5, 1),
 (1880214, 'Joaquín Roberto Martinez Aguilera', '2011-11-23', '23804790-0', 'Las Pataguas, Parcela 19, Valdivia De Paine', '2022-09-01', 'X-259-2022', 52, 3, 10, 15, 1, 1, 1, 1, 1, 7, 2),
