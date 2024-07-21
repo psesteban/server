@@ -136,7 +136,7 @@ INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALU
 (2, 'Ángela Barrera Catalán', '1982-08-12', '15.407.583-6', 954048661, 'Carabinero', 2),
 (3, 'Camila Espinoza Heredia', '1991-05-25', '17.769.995-0', 928589687, 'labores domésticas y de cuidado', 4),
 (4, 'Carla Constanza Navarrete Espinoza', '1989-01-31', '16.962.907-2', 962537155, 'Temporera en Parrones', 4),
-(5, 'Carolina Beatriz Ortega Rojas', '27-01-1977', '13.283.534-9', 940627953, 'Técnico profesional en trabajo Social - Dueña de Casa', 4),
+(5, 'Carolina Beatriz Ortega Rojas', '1977-01-27', '13.283.534-9', 940627953, 'Técnico profesional en trabajo Social - Dueña de Casa', 4),
 (6, 'Carolina Quiñones Rojas', '1991-09-14', '17.765.672-0', 92539230, 'labores domésticas y de cuidado', 4),
 (7, 'Catalina Del Pilar Madrid Aguilera', '1985-10-24', '16.272.122-4', 965535677, 'Operaria de producción', 2),
 (8, 'Cecilia Castillo Orellana', '1988-10-03', '17.049.610-8', 979135003, 'Ayudante amasandería', 4),

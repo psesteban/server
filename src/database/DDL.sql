@@ -66,7 +66,7 @@ CREATE TABLE nna (
   nombre VARCHAR(60) NOT NULL,
   nac DATE NOT NULL,
   rut VARCHAR(13) UNIQUE NOT NULL,
-  domicilio VARCHAR(70) NOT NULL,
+  domicilio VARCHAR(255) NOT NULL,
   ingreso DATE NOT NULL,
   rit VARCHAR(13) NOT NULL,
   adulto_id INTEGER,

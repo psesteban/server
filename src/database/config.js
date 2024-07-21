@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 const { Pool } = pkg
 
-const { DB_USER, DB_HOST, DB_DATABASE, DB_PASSWORD, DB_PORT } = process.env
+/* const { DB_USER, DB_HOST, DB_DATABASE, DB_PASSWORD, DB_PORT } = process.env
 
 const pool = new Pool({
   user: DB_USER,
@@ -20,6 +20,25 @@ pool.query('SELECT NOW()', (err, res) => {
   } else {
     console.log('DB conectada con éxito', res.rows[0].now)
   }
-})
+}) */
+
+const connectionString = process.env.PG_STRING_URL
+export const pool = connectionString
+  ? new Pool({
+    connectionString,
+    ssl: {
+      rejectUnauthorized: false
+    },
+    allowExitOnIdle: true
+  })
+  : new Pool({
+    allowExitOnIdle: true
+  })
+try {
+  await pool.query('SELECT NOW()')
+  console.log('Database connected')
+} catch (error) {
+  console.log(error)
+}
 
 export default pool
