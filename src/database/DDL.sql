@@ -103,6 +103,3 @@ CREATE TABLE informes (
   url VARCHAR(255),
   FOREIGN KEY (nna_id) REFERENCES nna(id)
 );
-
-
-
