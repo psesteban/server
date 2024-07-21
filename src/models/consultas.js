@@ -120,9 +120,10 @@ export const checkInforme = async (nna, rol) => {
 
 export const deleteNna = async (id) => {
   try {
-    console.log(id)
-    const consulta = 'DELETE FROM nna WHERE id = $1 CASCADE;'
+    const borradoInforme = 'DELETE FROM informes WHERE nna_id = $1;'
     const values = [id]
+    await data(borradoInforme, values)
+    const consulta = 'DELETE FROM nna WHERE id = $1 CASCADE;'
     return await data(consulta, values)
   } catch (error) {
     return error

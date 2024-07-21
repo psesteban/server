@@ -352,3 +352,19 @@ ALTER TABLE informes
   ON DELETE CASCADE;
 
   UPDATE nna SET larga_permanencia = false;
+
+  UPDATE nna SET prorroga = '2024-11-21' WHERE id = 1622159;
+  UPDATE nna SET prorroga = '2024-07-09' WHERE id = 1712796;
+  UPDATE nna SET prorroga = '2024-08-21' WHERE id = 1622182;
+  UPDATE nna SET prorroga = '2024-08-10' WHERE id = 1274199;
+  UPDATE nna SET prorroga = '2024-11-28' WHERE id = 1920974;
+  UPDATE nna SET prorroga = '2024-11-11' WHERE id = 1839808;
+  UPDATE nna SET prorroga = '2024-09-10' WHERE id = 1830838;
+  UPDATE nna SET prorroga = '2024-11-21' WHERE id = 1635201;
+  UPDATE nna SET prorroga = '2024-06-30' WHERE id = 1880214;
+  UPDATE nna SET prorroga = '2024-06-30' WHERE id = 1854366;
+  UPDATE nna SET prorroga = '2024-08-26' WHERE id = 1705967;
+
+
+
+
