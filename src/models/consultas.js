@@ -146,3 +146,14 @@ export const insertProrroga = async (date, id) => {
     return error
   }
 }
+
+export const insertNna = async (cod, nna, date, rut, domicilio, ingreso, rit, adulto, psicoId, saludId, educacionalId, motivoId, juzgadoId, parentescoId, comunaId, nacionalidadId, cursoId, genId) => {
+  try {
+    const datosNna = 'INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico_id, salud_id, educacional_id, motivo_id, juzgado_id, parentesco_id, comuna_id, nacionalidad_id, curso_id, gen_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);'
+    const values = [cod, nna, date, rut, domicilio, ingreso, rit, adulto, psicoId, saludId, educacionalId, motivoId, juzgadoId, parentescoId, comunaId, nacionalidadId, cursoId, genId]
+    await data(datosNna, values)
+    return await data(datosNna, values)
+  } catch (error) {
+    return error
+  }
+}
