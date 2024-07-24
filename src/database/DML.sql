@@ -94,7 +94,8 @@ INSERT INTO educacional (id, ed) VALUES
 (26, 'COLEGIO DE MAIPO'),
 (27, 'ESCUELA TUCAPEL (ARICA)'),
 (28, 'SAINT MARY COLLEGE BUIN'),
-(29, 'ESC. BASICA MUNICIPAL PAULA JARAQUEMADA ALQUI');
+(29, 'ESC. BASICA MUNICIPAL PAULA JARAQUEMADA ALQUI'), 
+(30, 'ESCUELA BÁSICA N 149 SAN MARCEL');
 
 
 INSERT INTO salud (id, salud) VALUES 
@@ -189,7 +190,8 @@ INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALU
 (55, 'Yanina Sepulveda Ananias', '1996-10-07', '19.515.077-K', 933545342, 'Trabajadora Informal', 2),
 (56, 'Yenifer Caruz', '1993-11-01', '18.402.095-5', 972561233, 'Dueña de casa', 6),
 (57, 'Yocelyn Caru Orellana', '1996-09-01', '19.391.228-1', 922578937, 'Cesante (técnico en odontología)', 6),
-(58, 'Zoraida Lopez Galdames', '1951-02-17', '6.677.932-7', 949333376, 'labores domésticas y de cuidado', 2);
+(58, 'Zoraida Lopez Galdames', '1951-02-17', '6.677.932-7', 949333376, 'labores domésticas y de cuidado', 2),
+(59, 'Linset Hidalgo', '1994-02-09', '18.816.566-4', 931446640, 'Dependiente/asalariada', 6);
 
 
 INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico_id, salud_id, educacional_id, motivo_id, juzgado_id, parentesco_id, comuna_id, nacionalidad_id, curso_id, gen_id) VALUES
@@ -266,7 +268,8 @@ INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico
 (1736329, 'Isidora Molina Sepulveda', '2019-02-11', '26706064-9', 'Padre Hugo Rios 73, Villa Padre Hurtado', '2023-06-30', 'X-186-2020', 55, 1, 3, 5, 4, 1, 1, 1, 1, 15, 1),
 (1932323, 'Agustina Caruz Villegas', '2009-05-01', '23009897-2', 'Ohiggins 936 Villa Los Ciruelos', '2023-07-26', 'P-536-2023', 56, 5, 4, 6, 4, 1, 3, 1, 1, 8, 1),
 (1952276, 'Pascuala Agusta Lunas Caru', '2019-03-07', '26735969-5', 'La Alborada, Sitio 13, Camino Valdivia De Paine', '2024-04-24', 'X-402-2023', 57, 5, 3, 24, 8, 1, 1, 1, 1, 17, 1),
-(1259730, 'Emilia Muñoz Muñoz', '2011-07-30', '23707280-4', 'pasaje Enrique Chacón 524 VIlla Tierras del Maipo', '2023-07-24', 'P-488-2023', 58, 1, 1, 5, 2, 1, 5, 1, 1, 7, 1);
+(1259730, 'Emilia Muñoz Muñoz', '2011-07-30', '23707280-4', 'pasaje Enrique Chacón 524 VIlla Tierras del Maipo', '2023-07-24', 'P-488-2023', 58, 1, 1, 5, 2, 1, 5, 1, 1, 7, 1),
+(1968470, 'Ignacia Antonela Maureira Hidalgo', '2012-02-20', '23881461-8', 'Carlos Strutz 160, población Arturo Prat', '2024-07-15', 'X-138-2024', 59, 5, 3, 30, 4, 1, 1, 1, 1, 7, 1);
 
 INSERT INTO informes (nna_id, numero, informe_ps, informe_ts) VALUES
 (1006016, 2, FALSE, FALSE),
