@@ -19,6 +19,21 @@ export const verificarCredenciales = async (nombre, password) => {
   return token
 }
 
+export const verificarPertenencia = async (nombre) => {
+  const consulta = 'SELECT password, rol_id FROM profesional WHERE nombre = $1;'
+  const values = [nombre]
+  const usuario = await data(consulta, values)
+  const { rol_id: rol } = usuario[0]
+
+  if (usuario.length === 0) {
+    throw new Error('Usuario no encontrado')
+  } else if (rol === 3) {
+    throw new Error('No tienes la autorización, ingresa como admin')
+  }
+  const token = jwt.sign({ nombre }, JWT_SECRET)
+  return token
+}
+
 export const verificarAdmin = async (nombre, password) => {
   const consulta = 'SELECT password, rol_id FROM profesional WHERE nombre = $1;'
   const values = [nombre]
@@ -155,5 +170,13 @@ export const insertNna = async (cod, nna, date, rut, domicilio, ingreso, rit, ad
     return await data(datosNna, values)
   } catch (error) {
     return error
+  }
+}
+
+export const getLink = async (body) => {
+  try {
+
+  } catch (error) {
+
   }
 }

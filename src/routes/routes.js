@@ -12,8 +12,10 @@ router.route('/admin')
   .get(authMiddlewareAdmin, controller.getDatosCredencial)
   .post(userValidator, controller.getAdmin)
   .put(controller.putInforme)
-
+router.route('/usergoogle')
+  .post(controller.getCredencialesGoogle)
 router.route('/informes')
+  .get(controller.getInforme)
   .put(authMiddlewareAdmin, controller.putProrroga)
   .delete(authMiddlewareAdmin, controller.deleteNna)
 

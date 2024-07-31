@@ -45,6 +45,7 @@ CREATE TABLE roles (
 CREATE TABLE profesional (
   id INT PRIMARY KEY,
   nombre VARCHAR(60) NOT NULL,
+  email VARCHAR(60) NOT NULL,
   rol_id Integer,
   dupla_id Integer,
   password VARCHAR(60) NOT NULL,

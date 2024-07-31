@@ -122,14 +122,14 @@ INSERT INTO roles (id, rol) VALUES
 (2, 'TS'),
 (3, 'AT');
 
-INSERT INTO profesional (id, nombre, rol_id, dupla_id, password) VALUES
-(1, 'Melissa Pulgar', 1, 2, 'M18952'),
-(2, 'Marianela Riquelme', 2, 1, 'M15636'),
-(3, 'Enzo Montecinos', 1, 4, 'E18318'),
-(4, 'trabajadora social', 2, 3, 'T12345'),
-(5, 'Marcela Castro', 1, 6, 'M16296'),
-(6, 'Natalia Navarro', 2, 5, 'N16005'),
-(7, 'Esteban Olivares', 3, 7, 'Recuerd4')
+INSERT INTO profesional (id, nombre, rol_id, dupla_id, password, email) VALUES
+(1, 'Melissa Pulgar', 1, 2, 'M18952', 'melissa.pulgar@fundaciondem.cl'),
+(2, 'Marianela Riquelme', 2, 1, 'M15636', 'marianela.riquelme@fundaciondem.cl'),
+(3, 'Enzo Montecinos', 1, 4, 'E18318', 'enzo.montecinos@fundaciondem.cl'), 
+(4, 'trabajadora social', 2, 3, 'T12345', 'correo@fundaciondem.cl'),
+(5, 'Marcela Castro', 1, 6, 'M16296', 'marcela.castro@fundaciondem.cl'),
+(6, 'Natalia Navarro', 2, 5, 'N16005', 'natalia.navarro@fundaciondem.cl'),
+(7, 'Esteban Olivares', 3, 7, 'Recuerd4', 'esteban.olivares@fundaciondem.cl')
 ;
 
 INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES
