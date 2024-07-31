@@ -24,7 +24,6 @@ export const verificarPertenencia = async (nombre) => {
   const values = [nombre]
   const usuario = await data(consulta, values)
   const { rol_id: rol } = usuario[0]
-
   if (usuario.length === 0) {
     throw new Error('Usuario no encontrado')
   } else if (rol === 3) {
