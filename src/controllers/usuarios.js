@@ -1,16 +1,8 @@
 import * as sql from '../models/consultas.js'
 
 // POST ingreso
-export const getCredenciales = (req, res) => sql.verificarCredenciales(req.body.name, req.body.password)
-  .then((token) => res.status(200).json({ token }))
-  .catch((error) => res.status(500).json({ error: error.message })
-  )
 export const getCredencialesGoogle = (req, res) => sql.verificarPertenencia(req.body.name)
-  .then((token) => res.status(200).json({ token }))
-  .catch((error) => res.status(500).json({ error: error.message })
-  )
-export const getAdmin = (req, res) => sql.verificarAdmin(req.body.name, req.body.password)
-  .then((token) => res.status(200).json({ token }))
+  .then((data) => res.status(200).json(data))
   .catch((error) => res.status(500).json({ error: error.message })
   )
 

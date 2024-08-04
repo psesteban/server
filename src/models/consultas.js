@@ -2,52 +2,26 @@ import data from './querys.js'
 import jwt from 'jsonwebtoken'
 const { JWT_SECRET, JWT_ADMIN } = process.env
 
-export const verificarCredenciales = async (nombre, password) => {
-  const consulta = 'SELECT password, rol_id FROM profesional WHERE nombre = $1;'
-  const values = [nombre]
-  const usuario = await data(consulta, values)
-  if (usuario.length === 0) {
-    throw new Error('Usuario no encontrado')
-  }
-  const { password: passwordCorrecta, rol_id: rol } = usuario[0]
-  if (passwordCorrecta !== password) {
-    throw new Error('Usuario o contraseña incorrecta')
-  } else if (passwordCorrecta === password && rol === 3) {
-    throw new Error('No tienes la autorización, ingresa como admin')
-  }
-  const token = jwt.sign({ nombre }, JWT_SECRET)
-  return token
-}
-
 export const verificarPertenencia = async (nombre) => {
-  const consulta = 'SELECT password, rol_id FROM profesional WHERE nombre = $1;'
+  const consulta = 'SELECT rol_id FROM profesional WHERE nombre = $1;'
   const values = [nombre]
   const usuario = await data(consulta, values)
-  const { rol_id: rol } = usuario[0]
+  let token = null
   if (usuario.length === 0) {
     throw new Error('Usuario no encontrado')
-  } else if (rol === 3) {
-    throw new Error('No tienes la autorización, ingresa como admin')
+  } else {
+    const { rol_id: rol } = usuario[0]
+    if (rol === 3) {
+      token = jwt.sign({ nombre }, JWT_ADMIN)
+    } else if (rol === 2) {
+      token = jwt.sign({ nombre }, JWT_SECRET)
+    }
   }
-  const token = jwt.sign({ nombre }, JWT_SECRET)
-  return token
-}
-
-export const verificarAdmin = async (nombre, password) => {
-  const consulta = 'SELECT password, rol_id FROM profesional WHERE nombre = $1;'
-  const values = [nombre]
-  const usuario = await data(consulta, values)
-  if (usuario.length === 0) {
-    throw new Error('Usuario no encontrado')
+  if (token) {
+    const { rol_id: rol } = usuario[0]
+    const data = { token, rol }
+    return data
   }
-  const { password: passwordCorrecta, rol_id: rol } = usuario[0]
-  if (passwordCorrecta !== password) {
-    throw new Error('Usuario o contraseña incorrecta')
-  } else if (passwordCorrecta === password && rol !== 3) {
-    throw new Error('No tienes la autorización, ingresa como usuario')
-  }
-  const token = jwt.sign({ nombre }, JWT_ADMIN)
-  return token
 }
 
 const consultaNombre = async (nombreProfesional) => {
@@ -169,13 +143,5 @@ export const insertNna = async (cod, nna, date, rut, domicilio, ingreso, rit, ad
     return await data(datosNna, values)
   } catch (error) {
     return error
-  }
-}
-
-export const getLink = async (body) => {
-  try {
-
-  } catch (error) {
-
   }
 }
