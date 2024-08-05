@@ -2,9 +2,9 @@ import data from './querys.js'
 import jwt from 'jsonwebtoken'
 const { JWT_SECRET, JWT_ADMIN } = process.env
 
-export const verificarPertenencia = async (nombre) => {
-  const consulta = 'SELECT rol_id FROM profesional WHERE nombre = $1;'
-  const values = [nombre]
+export const verificarPertenencia = async (email) => {
+  const consulta = 'SELECT rol_id FROM profesional WHERE email = $1;'
+  const values = [email]
   const usuario = await data(consulta, values)
   let token = null
   if (usuario.length === 0) {
@@ -12,9 +12,9 @@ export const verificarPertenencia = async (nombre) => {
   } else {
     const { rol_id: rol } = usuario[0]
     if (rol === 3) {
-      token = jwt.sign({ nombre }, JWT_ADMIN)
+      token = jwt.sign({ email }, JWT_ADMIN)
     } else if (rol === 2) {
-      token = jwt.sign({ nombre }, JWT_SECRET)
+      token = jwt.sign({ email }, JWT_SECRET)
     }
   }
   if (token) {

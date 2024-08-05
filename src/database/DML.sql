@@ -122,14 +122,14 @@ INSERT INTO roles (id, rol) VALUES
 (2, 'TS'),
 (3, 'AT');
 
-INSERT INTO profesional (id, nombre, rol_id, dupla_id, password, email) VALUES
-(1, 'Melissa Pulgar', 1, 2, 'M18952', 'melissa.pulgar@fundaciondem.cl'),
-(2, 'Marianela Riquelme', 2, 1, 'M15636', 'marianela.riquelme@fundaciondem.cl'),
-(3, 'Enzo Montecinos', 1, 4, 'E18318', 'enzo.montecinos@fundaciondem.cl'), 
-(4, 'trabajadora social', 2, 3, 'T12345', 'correo@fundaciondem.cl'),
-(5, 'Marcela Castro', 1, 6, 'M16296', 'marcela.castro@fundaciondem.cl'),
-(6, 'Natalia Navarro', 2, 5, 'N16005', 'natalia.navarro@fundaciondem.cl'),
-(7, 'Esteban Olivares', 3, 7, 'Recuerd4', 'esteban.olivares@fundaciondem.cl')
+INSERT INTO profesional (id, nombre, rol_id, dupla_id, email) VALUES
+(1, 'Melissa Pulgar', 1, 2, 'melissa.pulgar@fundaciondem.cl'),
+(2, 'Marianela Riquelme', 2, 1, 'marianela.riquelme@fundaciondem.cl'),
+(3, 'Enzo Montecinos', 1, 4, 'enzo.montecinos@fundaciondem.cl'), 
+(4, 'trabajadora social', 2, 3, 'correo@fundaciondem.cl'),
+(5, 'Marcela Castro', 1, 6, 'marcela.castro@fundaciondem.cl'),
+(6, 'Natalia Navarro', 2, 5, 'natalia.navarro@fundaciondem.cl'),
+(7, 'Esteban Olivares', 3, 7, 'esteban.olivares@fundaciondem.cl')
 ;
 
 INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES
@@ -367,3 +367,12 @@ ALTER TABLE informes
   UPDATE nna SET prorroga = '2024-06-30' WHERE id = 1880214;
   UPDATE nna SET prorroga = '2024-06-30' WHERE id = 1854366;
   UPDATE nna SET prorroga = '2024-08-26' WHERE id = 1705967;
+
+ALTER TABLE profesional ADD COLUMN email VARCHAR(60);
+UPDATE profesional SET email = 'melissa.pulgar@fundaciondem.cl' WHERE id = 1;
+UPDATE profesional SET email = 'marianela.riquelme@fundaciondem.cl' WHERE id = 2;
+UPDATE profesional SET email = 'enzo.montecinos@fundaciondem.cl' WHERE id = 3;
+UPDATE profesional SET email = 'marcela.castro@fundaciondem.cl' WHERE id = 5;
+UPDATE profesional SET email = 'natalia.navarro@fundaciondem.cl' WHERE id = 6;
+UPDATE profesional SET email = 'esteban.olivares@fundaciondem.cl' WHERE id = 7;
+ALTER TABLE profesional DROP COLUMN password;

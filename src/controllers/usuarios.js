@@ -1,7 +1,7 @@
 import * as sql from '../models/consultas.js'
 
 // POST ingreso
-export const getCredencialesGoogle = (req, res) => sql.verificarPertenencia(req.body.name)
+export const getCredencialesGoogle = (req, res) => sql.verificarPertenencia(req.body.email)
   .then((data) => res.status(200).json(data))
   .catch((error) => res.status(500).json({ error: error.message })
   )
