@@ -7,7 +7,7 @@ export const getCredencialesGoogle = (req, res) => sql.verificarPertenencia(req.
   )
 
 // GET
-export const getDatosCredencial = async (req, res) => await sql.buscarDatosProfesional(req.user.nombre)
+export const getDatosCredencial = async (req, res) => await sql.buscarDatosProfesional(req.user.email)
   .then((result) => res.status(200).json(result))
   .catch((error) => res.status(500).json(error)
   )

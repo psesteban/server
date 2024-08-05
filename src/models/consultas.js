@@ -24,19 +24,19 @@ export const verificarPertenencia = async (email) => {
   }
 }
 
-const consultaNombre = async (nombreProfesional) => {
-  const consulta = 'SELECT id, rol_id, dupla_id FROM profesional WHERE nombre = $1;'
-  const userParams = [nombreProfesional]
+const consultaNombre = async (emailProfesional) => {
+  const consulta = 'SELECT id, nombre, rol_id, dupla_id FROM profesional WHERE email = $1;'
+  const userParams = [emailProfesional]
   const profesional = await data(consulta, userParams)
-  const { id, rol_id: rol, dupla_id: dupla } = profesional[0]
+  const { id, rol_id: rol, dupla_id: dupla, nombre } = profesional[0]
   let ps = id
   if (rol === 2) {
     ps = dupla
   }
-  return { idProfesional: id, idPsico: ps, rol }
+  return { idProfesional: id, idPsico: ps, rol, nombre }
 }
-export const buscarDatosProfesional = async (nombre) => {
-  const { idProfesional, idPsico, rol } = await consultaNombre(nombre)
+export const buscarDatosProfesional = async (email) => {
+  const { idProfesional, idPsico, rol, nombre } = await consultaNombre(email)
   const values = [idPsico]
   let consulta = 'SELECT nna.id, nna.nombre, nna.ingreso, nna.prorroga, nna.larga_permanencia AS extends, informes.numero, informes.informe_ps, informes.informe_ts FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id WHERE psico_id = $1;'
   let resultados = await data(consulta, values)
