@@ -13,7 +13,7 @@ export const verificarPertenencia = async (email) => {
     const { rol_id: rol } = usuario[0]
     if (rol === 3) {
       token = jwt.sign({ email }, JWT_ADMIN)
-    } else if (rol === 2) {
+    } else if (rol === 2 || rol === 1) {
       token = jwt.sign({ email }, JWT_SECRET)
     }
   }
