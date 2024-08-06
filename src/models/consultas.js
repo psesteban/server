@@ -86,7 +86,7 @@ export const buscarDatosProfesional = async (email) => {
   else if (rol === 2) return { profesional, casos: datosTs }
 }
 
-export const checkInforme = async (nna, rol) => {
+export const checkInforme = async (nna, rol, name) => {
   try {
     if (rol === 1) {
       const consulta = 'UPDATE informes SET informe_ps = true WHERE nna_id = $1;'
@@ -99,7 +99,8 @@ export const checkInforme = async (nna, rol) => {
     } else if (rol === 3) {
       const consulta = 'UPDATE informes SET numero = numero + 1 WHERE nna_id = $1;'
       const values = [nna]
-      return await data(consulta, values)
+      await data(consulta, values)
+      return name
     }
   } catch (error) {
     return error
