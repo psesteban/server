@@ -4,6 +4,7 @@ const { JWT_SECRET, JWT_ADMIN } = process.env
 
 export const verificarPertenencia = async (email) => {
   const consulta = 'SELECT rol_id FROM profesional WHERE email = $1;'
+  console.log(email)
   const values = [email]
   const usuario = await data(consulta, values)
   let token = null
@@ -86,7 +87,7 @@ export const buscarDatosProfesional = async (email) => {
   else if (rol === 2) return { profesional, casos: datosTs }
 }
 
-export const checkInforme = async (nna, rol, name) => {
+export const checkInforme = async (nna, rol) => {
   try {
     if (rol === 1) {
       const consulta = 'UPDATE informes SET informe_ps = true WHERE nna_id = $1;'
@@ -100,7 +101,7 @@ export const checkInforme = async (nna, rol, name) => {
       const consulta = 'UPDATE informes SET numero = numero + 1 WHERE nna_id = $1;'
       const values = [nna]
       await data(consulta, values)
-      return name
+      return true
     }
   } catch (error) {
     return error
