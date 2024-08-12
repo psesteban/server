@@ -38,7 +38,7 @@ const consultaNombre = async (emailProfesional) => {
   const idDupla = [dupla]
   const datoDupla = await data(consultaDupla, idDupla)
   const { nombre: nombreDupla } = datoDupla[0]
-
+  console.log(nombreDupla)
   return { idPsico: ps, rol, nombre, nombreDupla }
 }
 export const buscarDatosProfesional = async (email) => {
@@ -72,7 +72,6 @@ export const buscarDatosProfesional = async (email) => {
     id: resultado.id,
     informe: resultado.numero,
     fecha: resultado.ingreso,
-    profesional: idProfesional,
     estado: resultado.informe_ps,
     prorroga: resultado.prorroga,
     hasta: resultado.extends

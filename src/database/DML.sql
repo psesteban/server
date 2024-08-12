@@ -126,7 +126,7 @@ INSERT INTO profesional (id, nombre, rol_id, dupla_id, email) VALUES
 (1, 'Melissa Pulgar', 1, 2, 'melissa.pulgar@fundaciondem.cl'),
 (2, 'Marianela Riquelme', 2, 1, 'marianela.riquelme@fundaciondem.cl'),
 (3, 'Enzo Montecinos', 1, 4, 'enzo.montecinos@fundaciondem.cl'), 
-(4, 'trabajadora social', 2, 3, 'correo@fundaciondem.cl'),
+(4, 'Ángela Oyarzun', 2, 3, 'correo@fundaciondem.cl'),
 (5, 'Marcela Castro', 1, 6, 'marcela.castro@fundaciondem.cl'),
 (6, 'Natalia Navarro', 2, 5, 'natalia.navarro@fundaciondem.cl'),
 (7, 'Esteban Olivares', 3, 7, 'esteban.olivares@fundaciondem.cl')
