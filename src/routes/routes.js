@@ -12,7 +12,7 @@ router.route('/admin')
 router.route('/usergoogle')
   .post(controller.getCredencialesGoogle)
 router.route('/informes')
-  .get(controller.getInforme)
+  .get(authMiddleware, controller.getInforme)
   .put(authMiddlewareAdmin, controller.putProrroga)
   .delete(authMiddlewareAdmin, controller.deleteNna)
 

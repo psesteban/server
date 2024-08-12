@@ -12,8 +12,8 @@ export const getDatosCredencial = async (req, res) => await sql.buscarDatosProfe
   .catch((error) => res.status(500).json(error)
   )
 
-export const getInforme = async (req, res) => await sql.getLink(req.body)
-  .then((link) => res.status(200).json(link))
+export const getInforme = async (req, res) => await sql.getDataNna(req.query.id)
+  .then((data) => res.status(200).json(data))
   .catch((error) => res.status(500).json(error)
   )
 
