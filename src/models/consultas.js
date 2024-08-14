@@ -4,7 +4,6 @@ const { JWT_SECRET, JWT_ADMIN } = process.env
 
 export const verificarPertenencia = async (email) => {
   const consulta = 'SELECT rol_id FROM profesional WHERE email = $1;'
-  console.log(email)
   const values = [email]
   const usuario = await data(consulta, values)
   let token = null
@@ -38,7 +37,6 @@ const consultaNombre = async (emailProfesional) => {
   const idDupla = [dupla]
   const datoDupla = await data(consultaDupla, idDupla)
   const { nombre: nombreDupla } = datoDupla[0]
-  console.log(nombreDupla)
   return { idPsico: ps, rol, nombre, nombreDupla }
 }
 export const buscarDatosProfesional = async (email) => {
