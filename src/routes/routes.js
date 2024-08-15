@@ -15,5 +15,8 @@ router.route('/informes')
   .get(authMiddleware, controller.getInforme)
   .put(authMiddlewareAdmin, controller.putProrroga)
   .delete(authMiddlewareAdmin, controller.deleteNna)
+router.route('/tablas')
+  .get(authMiddlewareAdmin, controller.getListas)
+  .put(authMiddlewareAdmin, controller.putInListas)
 
 export default router

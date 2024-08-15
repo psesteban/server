@@ -58,6 +58,7 @@ export const buscarDatosProfesional = async (email) => {
       prorroga: resultado.prorroga,
       hasta: resultado.extends
     }))
+
     return { nombre, rol, casos }
   }
   const profesional = {
@@ -88,6 +89,51 @@ export const buscarDatosProfesional = async (email) => {
   else if (rol === 2) return { profesional, casos: datosTs }
 }
 
+export const getTablas = async () => {
+  let consultaTabla = 'SELECT * FROM gen;'
+  const arrayGen = await data(consultaTabla)
+  consultaTabla = 'SELECT * FROM nacionalidad;'
+  const arrayNacionalidad = await data(consultaTabla)
+  consultaTabla = 'SELECT * FROM curso;'
+  const arrayCurso = await data(consultaTabla)
+  consultaTabla = 'SELECT * FROM comuna;'
+  const arrayComuna = await data(consultaTabla)
+  consultaTabla = 'SELECT * FROM parentesco;'
+  const arrayParentesco = await data(consultaTabla)
+  consultaTabla = 'SELECT * FROM juzgado;'
+  const arrayJuzgado = await data(consultaTabla)
+  consultaTabla = 'SELECT * FROM motivo;'
+  const arrayMotivo = await data(consultaTabla)
+  consultaTabla = 'SELECT * FROM educacional;'
+  const arrayEducacional = await data(consultaTabla)
+  consultaTabla = 'SELECT * FROM salud;'
+  const arraySalud = await data(consultaTabla)
+  consultaTabla = 'SELECT id, nombre FROM profesional WHERE rol_id = 1;'
+  const arrayTratantes = await data(consultaTabla)
+  consultaTabla = 'SELECT id, nombre FROM profesional WHERE rol_id = 2;'
+  const arrayTs = await data(consultaTabla)
+  consultaTabla = 'SELECT id, responsable FROM adulto;'
+  const arrayAdultos = await data(consultaTabla)
+  consultaTabla = 'SELECT id, nombre FROM nna;'
+  const arrayNna = await data(consultaTabla)
+  const tablas = {
+    arrayGen,
+    arrayNacionalidad,
+    arrayCurso,
+    arrayComuna,
+    arrayParentesco,
+    arrayJuzgado,
+    arrayMotivo,
+    arrayEducacional,
+    arraySalud,
+    arrayTratantes,
+    arrayTs,
+    arrayAdultos,
+    arrayNna
+  }
+  return tablas
+}
+
 export const checkInforme = async (nna, rol) => {
   try {
     if (rol === 1) {
@@ -111,14 +157,28 @@ export const checkInforme = async (nna, rol) => {
 
 export const deleteNna = async (id) => {
   try {
+    const adulto = 'SELECT adulto_id FROM nna WHERE id = $1;'
     const borradoInforme = 'DELETE FROM informes WHERE nna_id = $1;'
     const values = [id]
     await data(borradoInforme, values)
-    const consulta = 'DELETE FROM nna WHERE id = $1 CASCADE;'
-    return await data(consulta, values)
+    const adultoResponsable = await data(adulto, values)
+    const { adulto_id: idAdulto } = adultoResponsable[0]
+    const consulta = 'DELETE FROM nna WHERE id = $1;'
+    const consultaAdulto = 'SELECT COUNT(*) FROM nna where adulto_id = $1;'
+    const borrarAdulto = 'DELETE FROM adulto WHERE id = $1;'
+    const idValue = [idAdulto]
+    const consultaotrosNna = await data(consultaAdulto, idValue)
+    const { count } = consultaotrosNna[0]
+    if (count === 1) {
+      await data(consulta, values)
+      await data(borrarAdulto, idValue)
+    } else if (count < 1) {
+      await data(consulta, values)
+    }
   } catch (error) {
     return error
   }
+  return true
 }
 
 const cambiarEstadoProrroga = async (id) => {
@@ -138,14 +198,26 @@ export const insertProrroga = async (date, id) => {
   }
 }
 
-export const insertNna = async (cod, nna, date, rut, domicilio, ingreso, rit, adulto, psicoId, saludId, educacionalId, motivoId, juzgadoId, parentescoId, comunaId, nacionalidadId, cursoId, genId) => {
-  try {
-    const datosNna = 'INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico_id, salud_id, educacional_id, motivo_id, juzgado_id, parentesco_id, comuna_id, nacionalidad_id, curso_id, gen_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);'
-    const values = [cod, nna, date, rut, domicilio, ingreso, rit, adulto, psicoId, saludId, educacionalId, motivoId, juzgadoId, parentescoId, comunaId, nacionalidadId, cursoId, genId]
-    await data(datosNna, values)
-    return await data(datosNna, values)
-  } catch (error) {
-    return error
+export const insertNnj = async (id, data) => {
+  console.log(data)
+  if (id === 2) {
+    try {
+      const datosNna = 'INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico_id, salud_id, educacional_id, motivo_id, juzgado_id, parentesco_id, comuna_id, nacionalidad_id, curso_id, gen_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);'
+      const values = []
+      await data(datosNna, values)
+      return await data(datosNna, values)
+    } catch (error) {
+      return error
+    }
+  } else if (id === 1) {
+    try {
+      const datosNna = 'INSERT INTO adultos (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES ($1, $2, $3, $4, $5, $6, $7);'
+      const values = []
+      await data(datosNna, values)
+      return await data(datosNna, values)
+    } catch (error) {
+      return error
+    }
   }
 }
 

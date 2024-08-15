@@ -354,6 +354,12 @@ ALTER TABLE informes
   REFERENCES nna(id)
   ON DELETE CASCADE;
 
+ALTER TABLE adulto
+  ADD CONSTRAINT fk_informe_nna
+  FOREIGN KEY (ts_id)
+  REFERENCES profesional(id)
+  ON DELETE CASCADE;
+
   UPDATE nna SET larga_permanencia = false;
 
   UPDATE nna SET prorroga = '2024-11-21' WHERE id = 1622159;
@@ -375,4 +381,3 @@ UPDATE profesional SET email = 'enzo.montecinos@fundaciondem.cl' WHERE id = 3;
 UPDATE profesional SET email = 'marcela.castro@fundaciondem.cl' WHERE id = 5;
 UPDATE profesional SET email = 'natalia.navarro@fundaciondem.cl' WHERE id = 6;
 UPDATE profesional SET email = 'esteban.olivares@fundaciondem.cl' WHERE id = 7;
-ALTER TABLE profesional DROP COLUMN password;
