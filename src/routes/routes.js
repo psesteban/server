@@ -17,6 +17,9 @@ router.route('/informes')
   .delete(authMiddlewareAdmin, controller.deleteNna)
 router.route('/tablas')
   .get(authMiddlewareAdmin, controller.getListas)
-  .put(authMiddlewareAdmin, controller.putInListas)
-
+  .put(authMiddlewareAdmin, controller.putLista)
+router.route('/nna')
+  .put(authMiddlewareAdmin, controller.putNna)
+router.route('/adulto')
+  .put(authMiddlewareAdmin, controller.putAdulto)
 export default router

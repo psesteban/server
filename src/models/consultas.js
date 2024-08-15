@@ -198,26 +198,55 @@ export const insertProrroga = async (date, id) => {
   }
 }
 
-export const insertNnj = async (id, data) => {
-  console.log(data)
-  if (id === 2) {
-    try {
-      const datosNna = 'INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico_id, salud_id, educacional_id, motivo_id, juzgado_id, parentesco_id, comuna_id, nacionalidad_id, curso_id, gen_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);'
-      const values = []
-      await data(datosNna, values)
-      return await data(datosNna, values)
-    } catch (error) {
-      return error
-    }
-  } else if (id === 1) {
-    try {
-      const datosNna = 'INSERT INTO adultos (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES ($1, $2, $3, $4, $5, $6, $7);'
-      const values = []
-      await data(datosNna, values)
-      return await data(datosNna, values)
-    } catch (error) {
-      return error
-    }
+export const insertNnj = async (datos) => {
+  console.log(datos)
+  const id = datos.id
+  const nombre = datos.nombre
+  const nacimiento = datos.nacimiento
+  const rut = datos.rut
+  const genero = datos.genero
+  const nacion = datos.nacion
+  const domicilio = datos.domicilio
+  const comuna = datos.comuna
+  const tratante = datos.tratante
+  const causa = datos.causa
+  const juzgado = datos.juzgado
+  const ingreso = datos.ingreso
+  const adulto = datos.adulto
+  const motivo = datos.motivo
+  const salud = datos.salud
+  const educacion = datos.educacion
+  const curso = datos.curso
+  const parentesco = datos.curso
+  try {
+    const datosNna = 'INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico_id, salud_id, educacional_id, motivo_id, juzgado_id, parentesco_id, comuna_id, nacionalidad_id, curso_id, gen_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);'
+    const values = [id, nombre, nacimiento, rut, domicilio, ingreso, causa, adulto, tratante, salud, educacion, motivo, juzgado, parentesco, comuna, nacion, curso, genero]
+    await data(datosNna, values)
+    const informe = 'INSERT INTO informes (nna_id, numero, informe_ps, informe_ts) VALUES ($1, $2, $3, $4);'
+    const valores = [id, 1, false, false]
+    return await data(informe, valores)
+  } catch (error) {
+    console.log(error)
+    return error
+  }
+}
+export const insertAdulto = async (e) => {
+  const id = e.id
+  const responsable = e.responsable
+  const nacimiento = e.nacimiento
+  const run = e.run
+  const fono = e.fono
+  const labores = e.labores
+  const tsId = e.tsId
+
+  try {
+    const datosAdulto = 'INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES ($1, $2, $3, $4, $5, $6, $7);'
+    const values = [id, responsable, nacimiento, run, fono, labores, tsId]
+    await data(datosAdulto, values)
+    return true
+  } catch (error) {
+    console.log(error)
+    return error
   }
 }
 
@@ -229,5 +258,22 @@ export const getDataNna = async (id) => {
     return resultados
   } catch (error) {
     return error
+  }
+}
+
+export const changeAdult = async (datos) => {
+  const idAdulto = datos.responsable
+  const parentesco = datos.parentesco
+  const idNna = datos.id
+  try {
+    const consulta = 'UPDATE nna SET adulto_id = $1 WHERE id = $2;'
+    const values = [idAdulto, idNna]
+    await data(consulta, values)
+    const consultaPar = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
+    const valorPar = [parentesco, idNna]
+    const resultados = await data(consultaPar, valorPar)
+    return resultados
+  } catch (error) {
+
   }
 }
