@@ -5,7 +5,11 @@ export const getCredencialesGoogle = (req, res) => sql.verificarPertenencia(req.
   .then((data) => res.status(200).json(data))
   .catch((error) => res.status(500).json({ error: error.message })
   )
-
+// modificar NNA
+export const postNna = (req, res) => sql.postNnj(req.body.data)
+  .then((result) => res.status(200).json(result))
+  .catch((error) => res.status(500).json(error)
+  )
 // GET
 export const getDatosCredencial = async (req, res) => await sql.buscarDatosProfesional(req.user.email)
   .then((result) => res.status(200).json(result))
@@ -18,6 +22,10 @@ export const getInforme = async (req, res) => await sql.getDataNna(req.query.id)
   )
 export const getListas = async (req, res) => await sql.getTablas()
   .then((data) => res.status(200).json(data))
+  .catch((error) => res.status(500).json(error)
+  )
+export const getNna = (req, res) => sql.getNnj(req.query.id)
+  .then((result) => res.status(200).json(result))
   .catch((error) => res.status(500).json(error)
   )
 

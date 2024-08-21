@@ -95,7 +95,8 @@ INSERT INTO educacional (id, ed) VALUES
 (27, 'ESCUELA TUCAPEL (ARICA)'),
 (28, 'SAINT MARY COLLEGE BUIN'),
 (29, 'ESC. BASICA MUNICIPAL PAULA JARAQUEMADA ALQUI'), 
-(30, 'ESCUELA BÁSICA N 149 SAN MARCEL');
+(30, 'ESCUELA BÁSICA N 149 SAN MARCEL'),
+(31, 'ESCUELA BÁSICA G-N°813 LOS AROMOS DE EL RECURSO');
 
 
 INSERT INTO salud (id, salud) VALUES 
@@ -115,7 +116,8 @@ INSERT INTO salud (id, salud) VALUES
 (14, 'CONSULTORIO LINDEROS'),
 (15, 'Cesfam Dr. Miguel Solar'),
 (16, 'Atención primaria de la zona')
-;
+(17, 'Posta Los Morros'),
+(18, 'CECOSF Nuevo Buin');
 
 INSERT INTO roles (id, rol) VALUES
 (1, 'PS'),
