@@ -122,14 +122,14 @@ INSERT INTO roles (id, rol) VALUES
 (2, 'TS'),
 (3, 'AT');
 
-INSERT INTO profesional (id, nombre, rol_id, dupla_id, email) VALUES
-(1, 'Melissa Pulgar', 1, 2, 'melissa.pulgar@fundaciondem.cl'),
-(2, 'Marianela Riquelme', 2, 1, 'marianela.riquelme@fundaciondem.cl'),
-(3, 'Enzo Montecinos', 1, 4, 'enzo.montecinos@fundaciondem.cl'), 
-(4, 'Ángela Oyarzun', 2, 3, 'correo@fundaciondem.cl'),
-(5, 'Marcela Castro', 1, 6, 'marcela.castro@fundaciondem.cl'),
-(6, 'Natalia Navarro', 2, 5, 'natalia.navarro@fundaciondem.cl'),
-(7, 'Esteban Olivares', 3, 7, 'esteban.olivares@fundaciondem.cl')
+INSERT INTO profesional (id, nombre, rol_id, dupla_id, email, mensaje, urgent) VALUES
+(1, 'Melissa Pulgar', 1, 2, 'melissa.pulgar@fundaciondem.cl', null, false),
+(2, 'Marianela Riquelme', 2, 1, 'marianela.riquelme@fundaciondem.cl', null, false),
+(3, 'Enzo Montecinos', 1, 4, 'enzo.montecinos@fundaciondem.cl', null, false), 
+(4, 'Ángela Oyarzun', 2, 3, 'correo@fundaciondem.cl', null, false),
+(5, 'Marcela Castro', 1, 6, 'marcela.castro@fundaciondem.cl', null, false),
+(6, 'Natalia Navarro', 2, 5, 'natalia.navarro@fundaciondem.cl', null, false),
+(7, 'Esteban Olivares', 3, 7, 'esteban.olivares@fundaciondem.cl', null, false)
 ;
 
 INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES
@@ -378,6 +378,7 @@ ALTER TABLE profesional ADD COLUMN email VARCHAR(60);
 UPDATE profesional SET email = 'melissa.pulgar@fundaciondem.cl' WHERE id = 1;
 UPDATE profesional SET email = 'marianela.riquelme@fundaciondem.cl' WHERE id = 2;
 UPDATE profesional SET email = 'enzo.montecinos@fundaciondem.cl' WHERE id = 3;
+UPDATE profesional SET email = 'angela.oyarzun@fundaciondem.cl' WHERE id = 4;
 UPDATE profesional SET email = 'marcela.castro@fundaciondem.cl' WHERE id = 5;
 UPDATE profesional SET email = 'natalia.navarro@fundaciondem.cl' WHERE id = 6;
 UPDATE profesional SET email = 'esteban.olivares@fundaciondem.cl' WHERE id = 7;
