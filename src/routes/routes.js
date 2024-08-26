@@ -26,4 +26,9 @@ router.route('/nna')
   .put(authMiddlewareAdmin, controller.putNna)
 router.route('/adulto')
   .put(authMiddlewareAdmin, controller.putAdulto)
+router.route('/profesional')
+  .get(authMiddleware, controller.getPro)
+  .post(authMiddlewareAdmin, controller.postTarea)
+  .put(authMiddlewareAdmin, controller.putUrgent)
+
 export default router
