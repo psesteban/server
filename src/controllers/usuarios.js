@@ -5,6 +5,10 @@ export const getCredencialesGoogle = (req, res) => sql.verificarPertenencia(req.
   .then((data) => res.status(200).json(data))
   .catch((error) => res.status(500).json({ error: error.message })
   )
+export const postTarea = (req, res) => sql.verificarPertenencia(req.body.email)
+  .then((data) => res.status(200).json(data))
+  .catch((error) => res.status(500).json({ error: error.message })
+  )
 // modificar NNA
 export const postNna = (req, res) => sql.postNnj(req.body.data)
   .then((result) => res.status(200).json(result))
@@ -16,6 +20,10 @@ export const getDatosCredencial = async (req, res) => await sql.buscarDatosProfe
   .catch((error) => res.status(500).json(error)
   )
 
+export const getPro = async (req, res) => await sql.buscarDatosProfesional(req.user.email)
+  .then((result) => res.status(200).json(result))
+  .catch((error) => res.status(500).json(error)
+  )
 export const getInforme = async (req, res) => await sql.getDataNna(req.query.id)
   .then((data) => res.status(200).json(data))
   .catch((error) => res.status(500).json(error)
@@ -31,6 +39,11 @@ export const getNna = (req, res) => sql.getNnj(req.query.id)
 
 // PUT
 export const putInforme = (req, res) => sql.checkInforme(req.body.id, req.body.rol)
+  .then((result) => res.status(200).json(result))
+  .catch((error) => res.status(500).json(error)
+  )
+
+export const putUrgent = (req, res) => sql.checkInforme(req.body.id, req.body.rol)
   .then((result) => res.status(200).json(result))
   .catch((error) => res.status(500).json(error)
   )

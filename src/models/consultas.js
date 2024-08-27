@@ -46,7 +46,7 @@ export const buscarDatosProfesional = async (email) => {
   let resultados = await data(consulta, values)
   if (rol === 3) {
     const valueId = [id]
-    consulta = 'SELECT nna.id, nna.analisis, nna.fecha_analisis AS analizado, nna.url_analisis AS url, nna.nombre, nna.ingreso, nna.prorroga, nna.larga_permanencia AS extends, informes.numero, informes.informe_ps, informes.informe_ts, profesional.nombre AS tratante, profesional.asesoria AS asesor FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id JOIN profesional ON nna.psico_id = profesional.id WHERE asesor = $1;'
+    consulta = 'SELECT nna.id, nna.analisis, nna.fecha_analisis AS analizado, nna.url_analisis AS url, nna.nombre, nna.ingreso, nna.prorroga, nna.larga_permanencia AS extends, informes.numero, informes.informe_ps, informes.informe_ts, profesional.nombre AS tratante, profesional.asesoria AS asesor FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id JOIN profesional ON nna.psico_id = profesional.id WHERE profesional.asesoria = $1;'
     resultados = await data(consulta, valueId)
     const casos = resultados.map((resultado) => ({
       nombre: `${resultado.nombre}`,
