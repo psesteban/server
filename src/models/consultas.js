@@ -278,6 +278,18 @@ export const changeAdult = async (datos) => {
     const resultados = await data(consultaPar, valorPar)
     return resultados
   } catch (error) {
+    return error
+  }
+}
 
+export const addAnalisis = async (id, fecha, resumen, url) => {
+  try {
+    const consulta = 'UPDATE nna SET analisis = $1, fecha_analisis = $2, url_analisis = $3  WHERE id = $4;'
+    const values = [resumen, fecha, url, id]
+    await data(consulta, values)
+    return true
+  } catch (error) {
+    console.log(error)
+    return error
   }
 }

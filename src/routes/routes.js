@@ -31,4 +31,7 @@ router.route('/profesional')
   .post(authMiddlewareAdmin, controller.postTarea)
   .put(authMiddlewareAdmin, controller.putUrgent)
 
+router.route('/resumen')
+  .post(authMiddlewareAdmin, controller.postResumen)
+
 export default router
