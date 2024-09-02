@@ -41,56 +41,57 @@ const consultaNombre = async (emailProfesional) => {
 }
 export const buscarDatosProfesional = async (email) => {
   const { idPsico, rol, nombre, nombreDupla, id } = await consultaNombre(email)
-  const values = [idPsico]
-  let consulta = 'SELECT nna.id, nna.nombre, nna.ingreso, nna.prorroga, nna.larga_permanencia AS extends, informes.numero, informes.informe_ps, informes.informe_ts FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id WHERE psico_id = $1;'
-  let resultados = await data(consulta, values)
-  if (rol === 3) {
-    const valueId = [id]
-    consulta = 'SELECT nna.id, nna.analisis, nna.fecha_analisis AS analizado, nna.url_analisis AS url, nna.nombre, nna.ingreso, nna.prorroga, nna.larga_permanencia AS extends, informes.numero, informes.informe_ps, informes.informe_ts, profesional.nombre AS tratante, profesional.asesoria AS asesor FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id JOIN profesional ON nna.psico_id = profesional.id WHERE profesional.asesoria = $1;'
-    resultados = await data(consulta, valueId)
-    const casos = resultados.map((resultado) => ({
-      nombre: `${resultado.nombre}`,
-      id: resultado.id,
-      informe: resultado.numero,
-      fecha: resultado.ingreso,
-      profesional: resultado.tratante,
-      ps: resultado.informe_ps,
-      ts: resultado.informe_ps,
-      prorroga: resultado.prorroga,
-      hasta: resultado.extends,
-      resumen: resultado.analisis,
-      url: resultado.url,
-      ultima: resultado.analizado
-    }))
-
-    return { nombre, rol, casos }
+  let values = []
+  let consulta = ''
+  let profesional = {}
+  if (rol === 1 || rol === 2) {
+    values = [idPsico]
+    consulta = 'nna.id, nna.nac, nna.rut, nna.domicilio, nna.rit, salud.salud, adulto.responsable, adulto.nacimiento, adulto.run, adulto.fono, adulto.labores, educacional.ed, motivo.motivo, juzgado.juzgado, parentesco.parentesco, comuna.comuna, nacionalidad.nacion, curso.curso, gen.gen, nna.analisis, nna.fecha_analisis AS analizado, nna.url_analisis AS url, nna.nombre, nna.ingreso, nna.prorroga, nna.larga_permanencia AS extends, informes.numero, profesional.nombre AS tratante, profesional.asesoria AS asesor FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id JOIN profesional ON nna.psico_id = profesional.id JOIN adulto ON nna.adulto_id = adulto.id JOIN salud ON nna.salud_id = salud.id JOIN educacional ON nna.educacional_id = educacional.id JOIN motivo ON nna.motivo_id = motivo.id JOIN juzgado ON nna.juzgado_id = juzgado.id JOIN parentesco ON nna.parentesco_id = parentesco.id JOIN comuna ON nna.comuna_id = comuna.id JOIN nacionalidad ON nna.nacionalidad_id = nacionalidad.id JOIN curso ON nna.curso_id = curso.id JOIN gen ON nna.gen_id = gen.id WHERE psico_id = $1;'
+    profesional = {
+      nombre,
+      dupla: nombreDupla,
+      idRol: rol
+    }
+  } else if (rol === 3) {
+    values = [id]
+    consulta = 'SELECT nna.id, nna.nac, nna.rut, nna.domicilio, nna.rit, salud.salud, adulto.responsable, adulto.nacimiento, adulto.run, adulto.fono, adulto.id AS identificador, adulto.labores, educacional.ed, motivo.motivo, juzgado.juzgado, parentesco.parentesco, comuna.comuna, nacionalidad.nacion, curso.curso, gen.gen, nna.analisis, nna.fecha_analisis AS analizado, nna.url_analisis AS url, nna.nombre, nna.ingreso, nna.prorroga, nna.larga_permanencia AS extends, informes.numero, profesional.nombre AS tratante, profesional.asesoria AS asesor FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id JOIN profesional ON nna.psico_id = profesional.id JOIN adulto ON nna.adulto_id = adulto.id JOIN salud ON nna.salud_id = salud.id JOIN educacional ON nna.educacional_id = educacional.id JOIN motivo ON nna.motivo_id = motivo.id JOIN juzgado ON nna.juzgado_id = juzgado.id JOIN parentesco ON nna.parentesco_id = parentesco.id JOIN comuna ON nna.comuna_id = comuna.id JOIN nacionalidad ON nna.nacionalidad_id = nacionalidad.id JOIN curso ON nna.curso_id = curso.id JOIN gen ON nna.gen_id = gen.id WHERE profesional.asesoria = $1;'
   }
-  const profesional = {
-    nombre,
-    dupla: nombreDupla,
-    idRol: rol
-  }
-  const datosPs = resultados.map((resultado) => ({
+  const resultados = await data(consulta, values)
+  const casos = resultados.map((resultado) => ({
     nombre: `${resultado.nombre}`,
     id: resultado.id,
     informe: resultado.numero,
     fecha: resultado.ingreso,
-    estado: resultado.informe_ps,
+    profesional: resultado.tratante,
+    ps: resultado.informe_ps,
+    ts: resultado.informe_ps,
     prorroga: resultado.prorroga,
-    hasta: resultado.extends
+    hasta: resultado.extends,
+    resumen: resultado.analisis,
+    url: resultado.url,
+    ultima: resultado.analizado,
+    edad: resultado.nac,
+    rut: resultado.rut,
+    domicilio: resultado.domicilio,
+    rit: resultado.rit,
+    salud: resultado.salud,
+    educacional: resultado.ed,
+    motivo: resultado.motivo,
+    juzgado: resultado.juzgado,
+    parentesco: resultado.parentesco,
+    comuna: resultado.comuna,
+    nacionalidad: resultado.nacion,
+    curso: resultado.curso,
+    genero: resultado.gen,
+    adulto: resultado.responsable,
+    edadAdulto: resultado.nacimiento,
+    runAdulto: resultado.run,
+    telefono: resultado.fono,
+    labores: resultado.labores,
+    idAdulto: resultado.identificador
   }))
-
-  const datosTs = resultados.map((resultado) => ({
-    nombre: `${resultado.nombre}`,
-    id: resultado.id,
-    informe: resultado.numero,
-    fecha: resultado.ingreso,
-    estado: resultado.informe_ts,
-    prorroga: resultado.prorroga,
-    hasta: resultado.extends
-  }))
-  if (rol === 1) return { profesional, casos: datosPs }
-  else if (rol === 2) return { profesional, casos: datosTs }
+  if (rol === 3) return { nombre, rol, casos }
+  else if (rol === 1 || rol === 2) return { profesional, casos }
 }
 
 export const getTablas = async () => {
@@ -138,25 +139,39 @@ export const getTablas = async () => {
   return tablas
 }
 
-export const checkInforme = async (nna, rol) => {
+export const checkInforme = async (nna) => {
   try {
-    if (rol === 1) {
-      const consulta = 'UPDATE informes SET informe_ps = true WHERE nna_id = $1;'
-      const values = [nna]
-      return await data(consulta, values)
-    } else if (rol === 2) {
-      const consulta = 'UPDATE informes SET informe_ts = true WHERE nna_id = $1;'
-      const values = [nna]
-      return await data(consulta, values)
-    } else if (rol === 3) {
-      const consulta = 'UPDATE informes SET numero = numero + 1 WHERE nna_id = $1;'
-      const values = [nna]
-      await data(consulta, values)
-      return true
-    }
+    const consulta = 'UPDATE informes SET numero = numero + 1 WHERE nna_id = $1;'
+    const values = [nna]
+    await data(consulta, values)
+    return true
   } catch (error) {
     return error
   }
+}
+export const modificarDatos = async (datos) => {
+  const tipo = datos.tipo
+  const id = datos.id
+  const data = datos.data
+  if (tipo === 6) {
+    try {
+      const comuna = data.comuna
+      const consulta = 'UPDATE nna SET comuna = $1 WHERE nna_id = $2;'
+      const values = [comuna, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  }
+/*   try {
+    const consulta = 'UPDATE informes SET numero = numero + 1 WHERE nna_id = $1;'
+    const values = [nna]
+    await data(consulta, values)
+    return true
+  } catch (error) {
+    return error
+  } */
 }
 
 export const deleteNna = async (id) => {
@@ -221,7 +236,7 @@ export const insertNnj = async (datos) => {
   const salud = datos.salud
   const educacion = datos.educacion
   const curso = datos.curso
-  const parentesco = datos.curso
+  const parentesco = datos.parentesco
   try {
     const datosNna = 'INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico_id, salud_id, educacional_id, motivo_id, juzgado_id, parentesco_id, comuna_id, nacionalidad_id, curso_id, gen_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);'
     const values = [id, nombre, nacimiento, rut, domicilio, ingreso, causa, adulto, tratante, salud, educacion, motivo, juzgado, parentesco, comuna, nacion, curso, genero]
@@ -290,6 +305,23 @@ export const addAnalisis = async (id, fecha, resumen, url) => {
     return true
   } catch (error) {
     console.log(error)
+    return error
+  }
+}
+
+export const modificarNnj = async (datos) => {
+  const idAdulto = datos.responsable
+  const parentesco = datos.parentesco
+  const idNna = datos.id
+  try {
+    const consulta = 'UPDATE nna SET adulto_id = $1 WHERE id = $2;'
+    const values = [idAdulto, idNna]
+    await data(consulta, values)
+    const consultaPar = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
+    const valorPar = [parentesco, idNna]
+    const resultados = await data(consultaPar, valorPar)
+    return resultados
+  } catch (error) {
     return error
   }
 }
