@@ -153,27 +153,225 @@ export const modificarDatos = async (datos) => {
   const tipo = datos.tipo
   const id = datos.id
   const data = datos.data
-  if (tipo === 6) {
+  if (tipo === 1) {
+    try {
+      const nombre = data.nombre
+      const consulta = 'UPDATE nna SET nombre = $1 WHERE id = $2;'
+      const values = [nombre, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 2) {
+    try {
+      const rut = data.rut
+      const consulta = 'UPDATE nna SET rut = $1 WHERE id = $2;'
+      const values = [rut, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 3) {
+    try {
+      const genero = data.genero
+      const consulta = 'UPDATE nna SET gen_id = $1 WHERE id = $2;'
+      const values = [genero, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 4) {
+    try {
+      const nacion = data.nacion
+      const consulta = 'UPDATE nna SET nacionalidad_id = $1 WHERE id = $2;'
+      const values = [nacion, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 5) {
+    try {
+      const domicilio = data.domicilio
+      const consulta = 'UPDATE nna SET domicilio = $1 WHERE id = $2;'
+      const values = [domicilio, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 6) {
     try {
       const comuna = data.comuna
-      const consulta = 'UPDATE nna SET comuna = $1 WHERE nna_id = $2;'
+      const consulta = 'UPDATE nna SET comuna_id = $1 WHERE id = $2;'
       const values = [comuna, id]
       await data(consulta, values)
       return true
     } catch (error) {
       return error
     }
+  } else if (tipo === 7) {
+    try {
+      const nacimiento = data.nacimiento
+      const consulta = 'UPDATE nna SET nac = $1 WHERE id = $2;'
+      const values = [nacimiento, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 8) {
+    try {
+      const tratante = data.tratante
+      const consulta = 'UPDATE nna SET psico_id = $1 WHERE id = $2;'
+      const values = [tratante, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 9) {
+    try {
+      const causa = data.causa
+      const consulta = 'UPDATE nna SET rit = $1 WHERE id = $2;'
+      const values = [causa, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 10) {
+    try {
+      const juzgado = data.juzgado
+      const consulta = 'UPDATE nna SET juzgado_id = $1 WHERE id = $2;'
+      const values = [juzgado, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 11) {
+    try {
+      const ingreso = data.ingreso
+      const consulta = 'UPDATE nna SET ingreso = $1 WHERE id = $2;'
+      const values = [ingreso, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 12) {
+    try {
+      const motivo = data.motivo
+      const consulta = 'UPDATE nna SET motivo_id = $1 WHERE id = $2;'
+      const values = [motivo, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 13) {
+    try {
+      const parentesco = data.parentesco
+      const consulta = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
+      const values = [parentesco, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 14) {
+    try {
+      const salud = data.salud
+      const consulta = 'UPDATE nna SET salud_id = $1 WHERE id = $2;'
+      const values = [salud, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 15) {
+    try {
+      const educacion = data.educacion
+      const consulta = 'UPDATE nna SET educacional_id = $1 WHERE id = $2;'
+      const values = [educacion, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 16) {
+    try {
+      const curso = data.curso
+      const consulta = 'UPDATE nna SET curso_id = $1 WHERE id = $2;'
+      const values = [curso, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
   }
-/*   try {
-    const consulta = 'UPDATE informes SET numero = numero + 1 WHERE nna_id = $1;'
-    const values = [nna]
-    await data(consulta, values)
-    return true
-  } catch (error) {
-    return error
-  } */
 }
 
+export const modificarDatosAdulto = async (datos) => {
+  const tipo = datos.tipo
+  const id = datos.id
+  const data = datos.data
+  if (tipo === 17) {
+    try {
+      const nombre = data.nombre
+      const consulta = 'UPDATE adulto SET responsable = $1 WHERE id = $2;'
+      const values = [nombre, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 18) {
+    try {
+      const rut = data.rut
+      const consulta = 'UPDATE adulto SET run = $1 WHERE id = $2;'
+      const values = [rut, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 19) {
+    try {
+      const fono = data.fono
+      const consulta = 'UPDATE adulto SET fono = $1 WHERE id = $2;'
+      const values = [fono, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 20) {
+    try {
+      const labor = data.labor
+      const consulta = 'UPDATE adulto SET labores = $1 WHERE id = $2;'
+      const values = [labor, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  } else if (tipo === 21) {
+    try {
+      const nacimiento = data.nacimiento
+      const consulta = 'UPDATE adulto SET nacimiento = $1 WHERE id = $2;'
+      const values = [nacimiento, id]
+      await data(consulta, values)
+      return true
+    } catch (error) {
+      return error
+    }
+  }
+}
 export const deleteNna = async (id) => {
   try {
     const adulto = 'SELECT adulto_id FROM nna WHERE id = $1;'
