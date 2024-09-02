@@ -62,10 +62,11 @@ CREATE TABLE tareas (
 );
 
 CREATE TABLE logros (
-  id INT PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   logro TEXT,
-  profesional INT,
-  FOREIGN KEY (profesional) REFERENCES profesional(id)
+  medalla VARCHAR(60),
+  profesional_id INT,
+  FOREIGN KEY (profesional_id) REFERENCES profesional(id)
 );
 
 CREATE TABLE adulto (

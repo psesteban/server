@@ -90,7 +90,7 @@ export const buscarDatosProfesional = async (email) => {
     labores: resultado.labores,
     idAdulto: resultado.identificador
   }))
-  if (rol === 3) return { nombre, rol, casos }
+  if (rol === 3) return { nombre, rol, id, casos }
   else if (rol === 1 || rol === 2) return { profesional, casos }
 }
 
@@ -519,6 +519,65 @@ export const modificarNnj = async (datos) => {
     const valorPar = [parentesco, idNna]
     const resultados = await data(consultaPar, valorPar)
     return resultados
+  } catch (error) {
+    return error
+  }
+}
+
+export const addLogro = async (data) => {
+  const id = data.id
+  const logro = data.logro
+  const medalla = data.medalla
+  try {
+    const consulta = 'INSERT INTO logros (profesional_id, logro, medalla) VALUES ($1, $2, $3);'
+    const values = [id, logro, medalla]
+    await data(consulta, values)
+    return true
+  } catch (error) {
+    console.log(error)
+    return error
+  }
+}
+export const borrarLogro = async (id) => {
+  try {
+    const consulta = 'DELETE FROM logros WHERE id = $1;'
+    const values = [id]
+    await data(consulta, values)
+    return true
+  } catch (error) {
+    console.log(error)
+    return error
+  }
+}
+
+export const modificarLogro = async (data) => {
+  const id = data.id
+  const logro = data.logro
+  const medalla = data.medalla
+  try {
+    const consulta = 'UPDATE logros SET logro = $1, medalla = $2 WHERE id = $3;'
+    const values = [logro, medalla, id]
+    return await data(consulta, values)
+  } catch (error) {
+    return error
+  }
+}
+
+export const logroPorId = async (id) => {
+  try {
+    const consulta = 'SELECT * FROM logros WHERE profesional_id = $1;'
+    const values = [id]
+    return await data(consulta, values)
+  } catch (error) {
+    return error
+  }
+}
+
+export const getTodoLogros = async (id) => {
+  try {
+    const consulta = 'SELECT * FROM logros RIGHT JOIN profesional ON profesional_id = profesional.id WHERE profesional.asesoria = $1;'
+    const values = [id]
+    return await data(consulta, values)
   } catch (error) {
     return error
   }

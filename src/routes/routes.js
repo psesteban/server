@@ -32,6 +32,11 @@ router.route('/profesional')
 router.route('/resumen')
   .post(authMiddlewareAdmin, controller.postResumen)
 router.route('/dato')
+  .get(authMiddlewareAdmin, controller.logros)
   .put(authMiddlewareAdmin, controller.putDato)
-
+router.route('/logros')
+  .get(authMiddleware, controller.getLogro)
+  .post(authMiddlewareAdmin, controller.postLogro)
+  .put(authMiddlewareAdmin, controller.putLogro)
+  .delete(authMiddlewareAdmin, controller.deleteLogro)
 export default router
