@@ -410,14 +410,14 @@ export const insertProrroga = async (date, id) => {
     const consulta = 'UPDATE nna SET prorroga = $1 WHERE id = $2;'
     const values = [date, id]
     cambiarEstadoProrroga(id)
-    return await data(consulta, values)
+    await data(consulta, values)
+    return true
   } catch (error) {
     return error
   }
 }
 
-export const insertNnj = async (datos) => {
-  console.log(datos)
+export const insertNnj = async ({ datos }) => {
   const id = datos.id
   const nombre = datos.nombre
   const nacimiento = datos.nacimiento
@@ -489,8 +489,8 @@ export const changeAdult = async (datos) => {
     await data(consulta, values)
     const consultaPar = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
     const valorPar = [parentesco, idNna]
-    const resultados = await data(consultaPar, valorPar)
-    return resultados
+    await data(consultaPar, valorPar)
+    return true
   } catch (error) {
     return error
   }
@@ -518,8 +518,8 @@ export const modificarNnj = async (datos) => {
     await data(consulta, values)
     const consultaPar = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
     const valorPar = [parentesco, idNna]
-    const resultados = await data(consultaPar, valorPar)
-    return resultados
+    await data(consultaPar, valorPar)
+    return true
   } catch (error) {
     return error
   }
