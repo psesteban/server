@@ -131,7 +131,8 @@ INSERT INTO profesional (id, nombre, rol_id, dupla_id, email, mensaje, urgent, a
 (4, 'Ángela Oyarzun', 2, 3, 'correo@fundaciondem.cl', null, false, 7),
 (5, 'Marcela Castro', 1, 6, 'marcela.castro@fundaciondem.cl', null, false, 7),
 (6, 'Natalia Navarro', 2, 5, 'natalia.navarro@fundaciondem.cl', null, false, 7),
-(7, 'Esteban Olivares', 3, 7, 'esteban.olivares@fundaciondem.cl', null, false, 7)
+(7, 'Esteban Olivares', 3, 7, 'esteban.olivares@fundaciondem.cl', null, false, 7),
+(8, 'Usuario Ejemplar', 2, 3, 'prmbuin2@fundaciondem.cl', null, false, 7)
 ;
 
 INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES
