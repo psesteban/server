@@ -50,7 +50,8 @@ export const buscarDatosProfesional = async (email) => {
     profesional = {
       nombre,
       dupla: nombreDupla,
-      idRol: rol
+      idRol: rol,
+      id
     }
   } else if (rol === 3) {
     values = [id]
@@ -528,9 +529,10 @@ export const addLogro = async (data) => {
   const id = data.id
   const logro = data.logro
   const medalla = data.medalla
+  const contenido = data.contenido
   try {
-    const consulta = 'INSERT INTO logros (profesional_id, logro, medalla) VALUES ($1, $2, $3);'
-    const values = [id, logro, medalla]
+    const consulta = 'INSERT INTO logros (profesional_id, logro, medalla, content) VALUES ($1, $2, $3, $4);'
+    const values = [id, logro, medalla, contenido]
     await data(consulta, values)
     return true
   } catch (error) {
@@ -550,19 +552,6 @@ export const borrarLogro = async (id) => {
   }
 }
 
-export const modificarLogro = async (data) => {
-  const id = data.id
-  const logro = data.logro
-  const medalla = data.medalla
-  try {
-    const consulta = 'UPDATE logros SET logro = $1, medalla = $2 WHERE id = $3;'
-    const values = [logro, medalla, id]
-    return await data(consulta, values)
-  } catch (error) {
-    return error
-  }
-}
-
 export const logroPorId = async (id) => {
   try {
     const consulta = 'SELECT * FROM logros WHERE profesional_id = $1;'
@@ -575,7 +564,16 @@ export const logroPorId = async (id) => {
 
 export const getTodoLogros = async (id) => {
   try {
-    const consulta = 'SELECT * FROM logros RIGHT JOIN profesional ON profesional_id = profesional.id WHERE profesional.asesoria = $1;'
+    const consulta = 'SELECT logros.id, logro, medalla, profesional.nombre, profesional_id  FROM logros RIGHT JOIN profesional ON profesional_id = profesional.id WHERE profesional.asesoria = $1;'
+    const values = [id]
+    return await data(consulta, values)
+  } catch (error) {
+    return error
+  }
+}
+export const getProfesionales = async (id) => {
+  try {
+    const consulta = 'SELECT id, nombre FROM profesional WHERE asesoria = $1;'
     const values = [id]
     return await data(consulta, values)
   } catch (error) {

@@ -124,14 +124,14 @@ INSERT INTO roles (id, rol) VALUES
 (2, 'TS'),
 (3, 'AT');
 
-INSERT INTO profesional (id, nombre, rol_id, dupla_id, email, mensaje, urgent) VALUES
-(1, 'Melissa Pulgar', 1, 2, 'melissa.pulgar@fundaciondem.cl', null, false),
-(2, 'Marianela Riquelme', 2, 1, 'marianela.riquelme@fundaciondem.cl', null, false),
-(3, 'Enzo Montecinos', 1, 4, 'enzo.montecinos@fundaciondem.cl', null, false), 
-(4, 'Ángela Oyarzun', 2, 3, 'correo@fundaciondem.cl', null, false),
-(5, 'Marcela Castro', 1, 6, 'marcela.castro@fundaciondem.cl', null, false),
-(6, 'Natalia Navarro', 2, 5, 'natalia.navarro@fundaciondem.cl', null, false),
-(7, 'Esteban Olivares', 3, 7, 'esteban.olivares@fundaciondem.cl', null, false)
+INSERT INTO profesional (id, nombre, rol_id, dupla_id, email, mensaje, urgent, asesoria) VALUES
+(1, 'Melissa Pulgar', 1, 2, 'melissa.pulgar@fundaciondem.cl', null, false, 7),
+(2, 'Marianela Riquelme', 2, 1, 'marianela.riquelme@fundaciondem.cl', null, false, 7),
+(3, 'Enzo Montecinos', 1, 4, 'enzo.montecinos@fundaciondem.cl', null, false, 7), 
+(4, 'Ángela Oyarzun', 2, 3, 'correo@fundaciondem.cl', null, false, 7),
+(5, 'Marcela Castro', 1, 6, 'marcela.castro@fundaciondem.cl', null, false, 7),
+(6, 'Natalia Navarro', 2, 5, 'natalia.navarro@fundaciondem.cl', null, false, 7),
+(7, 'Esteban Olivares', 3, 7, 'esteban.olivares@fundaciondem.cl', null, false, 7)
 ;
 
 INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES

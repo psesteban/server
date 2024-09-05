@@ -65,6 +65,7 @@ CREATE TABLE logros (
   id SERIAL PRIMARY KEY,
   logro TEXT,
   medalla VARCHAR(60),
+  content TEXT,
   profesional_id INT,
   FOREIGN KEY (profesional_id) REFERENCES profesional(id)
 );
