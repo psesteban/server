@@ -46,10 +46,30 @@ CREATE TABLE profesional (
   id INT PRIMARY KEY,
   nombre VARCHAR(60) NOT NULL,
   email VARCHAR(60) NOT NULL,
+  reconocimiento VARCHAR(60),
   rol_id Integer,
   dupla_id Integer,
+  urgent BOOLEAN,
+  asesoria INT,
   FOREIGN KEY (rol_id) REFERENCES roles(id)
 );
+
+CREATE TABLE tareas (
+  id INT PRIMARY KEY,
+  tarea TEXT,
+  profesional INT,
+  FOREIGN KEY (profesional) REFERENCES profesional(id)
+);
+
+CREATE TABLE logros (
+  id SERIAL PRIMARY KEY,
+  logro TEXT,
+  medalla VARCHAR(60),
+  contenido TEXT,
+  profesional_id INT,
+  FOREIGN KEY (profesional_id) REFERENCES profesional(id)
+);
+
 CREATE TABLE adulto (
   id INT PRIMARY KEY,
   responsable VARCHAR(60) NOT NULL,
@@ -82,6 +102,9 @@ CREATE TABLE nna (
   gen_id INTEGER,
   prorroga DATE,
   larga_permanencia BOOLEAN,
+  analisis TEXT,
+  fecha_analisis DATE,
+  url_analisis TEXT,
   FOREIGN KEY (adulto_id) REFERENCES adulto(id),
   FOREIGN KEY (psico_id) REFERENCES profesional(id),
   FOREIGN KEY (salud_id) REFERENCES salud(id),
@@ -98,8 +121,6 @@ CREATE TABLE nna (
 CREATE TABLE informes (
   nna_id Integer,
   numero Integer NOT NULL,
-  informe_ps BOOLEAN,
-  informe_ts BOOLEAN,
   url VARCHAR(255),
   FOREIGN KEY (nna_id) REFERENCES nna(id)
 );

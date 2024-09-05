@@ -95,7 +95,8 @@ INSERT INTO educacional (id, ed) VALUES
 (27, 'ESCUELA TUCAPEL (ARICA)'),
 (28, 'SAINT MARY COLLEGE BUIN'),
 (29, 'ESC. BASICA MUNICIPAL PAULA JARAQUEMADA ALQUI'), 
-(30, 'ESCUELA BÁSICA N 149 SAN MARCEL');
+(30, 'ESCUELA BÁSICA N 149 SAN MARCEL'),
+(31, 'ESCUELA BÁSICA G-N°813 LOS AROMOS DE EL RECURSO');
 
 
 INSERT INTO salud (id, salud) VALUES 
@@ -115,21 +116,22 @@ INSERT INTO salud (id, salud) VALUES
 (14, 'CONSULTORIO LINDEROS'),
 (15, 'Cesfam Dr. Miguel Solar'),
 (16, 'Atención primaria de la zona')
-;
+(17, 'Posta Los Morros'),
+(18, 'CECOSF Nuevo Buin');
 
 INSERT INTO roles (id, rol) VALUES
 (1, 'PS'),
 (2, 'TS'),
 (3, 'AT');
 
-INSERT INTO profesional (id, nombre, rol_id, dupla_id, email) VALUES
-(1, 'Melissa Pulgar', 1, 2, 'melissa.pulgar@fundaciondem.cl'),
-(2, 'Marianela Riquelme', 2, 1, 'marianela.riquelme@fundaciondem.cl'),
-(3, 'Enzo Montecinos', 1, 4, 'enzo.montecinos@fundaciondem.cl'), 
-(4, 'Ángela Oyarzun', 2, 3, 'correo@fundaciondem.cl'),
-(5, 'Marcela Castro', 1, 6, 'marcela.castro@fundaciondem.cl'),
-(6, 'Natalia Navarro', 2, 5, 'natalia.navarro@fundaciondem.cl'),
-(7, 'Esteban Olivares', 3, 7, 'esteban.olivares@fundaciondem.cl')
+INSERT INTO profesional (id, nombre, rol_id, dupla_id, email, mensaje, urgent, asesoria) VALUES
+(1, 'Melissa Pulgar', 1, 2, 'melissa.pulgar@fundaciondem.cl', null, false, 7),
+(2, 'Marianela Riquelme', 2, 1, 'marianela.riquelme@fundaciondem.cl', null, false, 7),
+(3, 'Enzo Montecinos', 1, 4, 'enzo.montecinos@fundaciondem.cl', null, false, 7), 
+(4, 'Ángela Oyarzun', 2, 3, 'correo@fundaciondem.cl', null, false, 7),
+(5, 'Marcela Castro', 1, 6, 'marcela.castro@fundaciondem.cl', null, false, 7),
+(6, 'Natalia Navarro', 2, 5, 'natalia.navarro@fundaciondem.cl', null, false, 7),
+(7, 'Esteban Olivares', 3, 7, 'esteban.olivares@fundaciondem.cl', null, false, 7)
 ;
 
 INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES
@@ -378,6 +380,7 @@ ALTER TABLE profesional ADD COLUMN email VARCHAR(60);
 UPDATE profesional SET email = 'melissa.pulgar@fundaciondem.cl' WHERE id = 1;
 UPDATE profesional SET email = 'marianela.riquelme@fundaciondem.cl' WHERE id = 2;
 UPDATE profesional SET email = 'enzo.montecinos@fundaciondem.cl' WHERE id = 3;
+UPDATE profesional SET email = 'angela.oyarzun@fundaciondem.cl' WHERE id = 4;
 UPDATE profesional SET email = 'marcela.castro@fundaciondem.cl' WHERE id = 5;
 UPDATE profesional SET email = 'natalia.navarro@fundaciondem.cl' WHERE id = 6;
 UPDATE profesional SET email = 'esteban.olivares@fundaciondem.cl' WHERE id = 7;
