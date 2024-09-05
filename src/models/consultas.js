@@ -525,13 +525,13 @@ export const modificarNnj = async (datos) => {
   }
 }
 
-export const addLogro = async (data) => {
-  const id = data.id
-  const logro = data.logro
-  const medalla = data.medalla
-  const contenido = data.contenido
+export const addLogro = async ({ datos }) => {
+  const id = datos.id
+  const logro = datos.logro
+  const medalla = datos.medalla
+  const contenido = datos.contenido
   try {
-    const consulta = 'INSERT INTO logros (profesional_id, logro, medalla, content) VALUES ($1, $2, $3, $4);'
+    const consulta = 'INSERT INTO logros (profesional_id, logro, medalla, contenido) VALUES ($1, $2, $3, $4);'
     const values = [id, logro, medalla, contenido]
     await data(consulta, values)
     return true
@@ -564,7 +564,7 @@ export const logroPorId = async (id) => {
 
 export const getTodoLogros = async (id) => {
   try {
-    const consulta = 'SELECT logros.id, logro, medalla, profesional.nombre, profesional_id  FROM logros RIGHT JOIN profesional ON profesional_id = profesional.id WHERE profesional.asesoria = $1;'
+    const consulta = 'SELECT logros.id, logro, medalla, contenido, profesional.nombre, profesional_id  FROM logros RIGHT JOIN profesional ON profesional_id = profesional.id WHERE profesional.asesoria = $1;'
     const values = [id]
     return await data(consulta, values)
   } catch (error) {
