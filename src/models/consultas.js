@@ -343,9 +343,10 @@ export const insertNnj = async ({ datos }) => {
   const datosNna = 'INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico_id, salud_id, educacional_id, motivo_id, juzgado_id, parentesco_id, comuna_id, nacionalidad_id, curso_id, gen_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);'
   const values = [id, nombre, nacimiento, rut, domicilio, ingreso, causa, adulto, tratante, salud, educacion, motivo, juzgado, parentesco, comuna, nacion, curso, genero]
   await data(datosNna, values)
-  const informe = 'INSERT INTO informes (nna_id, numero, informe_ps, informe_ts) VALUES ($1, $2, $3, $4);'
+  const informe = 'INSERT INTO informes (nna_id, numero) VALUES ($1, $2);'
   const valores = [id, 1, false, false]
-  return await data(informe, valores)
+  await data(informe, valores)
+  return true
 }
 export const insertAdulto = async (e) => {
   const id = e.id
