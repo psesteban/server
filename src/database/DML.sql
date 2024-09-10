@@ -376,12 +376,3 @@ ALTER TABLE adulto
   UPDATE nna SET prorroga = '2024-06-30' WHERE id = 1880214;
   UPDATE nna SET prorroga = '2024-06-30' WHERE id = 1854366;
   UPDATE nna SET prorroga = '2024-08-26' WHERE id = 1705967;
-
-ALTER TABLE profesional ADD COLUMN email VARCHAR(60);
-UPDATE profesional SET email = 'melissa.pulgar@fundaciondem.cl' WHERE id = 1;
-UPDATE profesional SET email = 'marianela.riquelme@fundaciondem.cl' WHERE id = 2;
-UPDATE profesional SET email = 'enzo.montecinos@fundaciondem.cl' WHERE id = 3;
-UPDATE profesional SET email = 'angela.oyarzun@fundaciondem.cl' WHERE id = 4;
-UPDATE profesional SET email = 'marcela.castro@fundaciondem.cl' WHERE id = 5;
-UPDATE profesional SET email = 'natalia.navarro@fundaciondem.cl' WHERE id = 6;
-UPDATE profesional SET email = 'esteban.olivares@fundaciondem.cl' WHERE id = 7;
