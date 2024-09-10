@@ -149,99 +149,99 @@ export const checkInforme = async (nna) => {
 export const modificarDatos = async (datos) => {
   const tipo = datos.tipo
   const id = datos.id
-  const data = datos.data
+  const dato = datos.data
   if (tipo === 1) {
-    const nombre = data.nombre
+    const nombre = dato.nombre
     const consulta = 'UPDATE nna SET nombre = $1 WHERE id = $2;'
     const values = [nombre, id]
     await data(consulta, values)
     return true
   } else if (tipo === 2) {
-    const rut = data.rut
+    const rut = dato.rut
     const consulta = 'UPDATE nna SET rut = $1 WHERE id = $2;'
     const values = [rut, id]
     await data(consulta, values)
     return true
   } else if (tipo === 3) {
-    const genero = data.genero
+    const genero = dato.genero
     const consulta = 'UPDATE nna SET gen_id = $1 WHERE id = $2;'
     const values = [genero, id]
     await data(consulta, values)
     return true
   } else if (tipo === 4) {
-    const nacion = data.nacion
+    const nacion = dato.nacion
     const consulta = 'UPDATE nna SET nacionalidad_id = $1 WHERE id = $2;'
     const values = [nacion, id]
     await data(consulta, values)
     return true
   } else if (tipo === 5) {
-    const domicilio = data.domicilio
+    const domicilio = dato.domicilio
     const consulta = 'UPDATE nna SET domicilio = $1 WHERE id = $2;'
     const values = [domicilio, id]
     await data(consulta, values)
     return true
   } else if (tipo === 6) {
-    const comuna = data.comuna
+    const comuna = dato.comuna
     const consulta = 'UPDATE nna SET comuna_id = $1 WHERE id = $2;'
     const values = [comuna, id]
     await data(consulta, values)
     return true
   } else if (tipo === 7) {
-    const nacimiento = data.nacimiento
+    const nacimiento = dato.nacimiento
     const consulta = 'UPDATE nna SET nac = $1 WHERE id = $2;'
     const values = [nacimiento, id]
     await data(consulta, values)
     return true
   } else if (tipo === 8) {
-    const tratante = data.tratante
+    const tratante = dato.tratante
     const consulta = 'UPDATE nna SET psico_id = $1 WHERE id = $2;'
     const values = [tratante, id]
     await data(consulta, values)
     return true
   } else if (tipo === 9) {
-    const causa = data.causa
+    const causa = dato.causa
     const consulta = 'UPDATE nna SET rit = $1 WHERE id = $2;'
     const values = [causa, id]
     await data(consulta, values)
     return true
   } else if (tipo === 10) {
-    const juzgado = data.juzgado
+    const juzgado = dato.juzgado
     const consulta = 'UPDATE nna SET juzgado_id = $1 WHERE id = $2;'
     const values = [juzgado, id]
     await data(consulta, values)
     return true
   } else if (tipo === 11) {
-    const ingreso = data.ingreso
+    const ingreso = dato.ingreso
     const consulta = 'UPDATE nna SET ingreso = $1 WHERE id = $2;'
     const values = [ingreso, id]
     await data(consulta, values)
     return true
   } else if (tipo === 12) {
-    const motivo = data.motivo
+    const motivo = dato.motivo
     const consulta = 'UPDATE nna SET motivo_id = $1 WHERE id = $2;'
     const values = [motivo, id]
     await data(consulta, values)
     return true
   } else if (tipo === 13) {
-    const parentesco = data.parentesco
+    const parentesco = dato.parentesco
     const consulta = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
     const values = [parentesco, id]
     await data(consulta, values)
     return true
   } else if (tipo === 14) {
-    const salud = data.salud
+    const salud = dato.salud
     const consulta = 'UPDATE nna SET salud_id = $1 WHERE id = $2;'
     const values = [salud, id]
     await data(consulta, values)
     return true
   } else if (tipo === 15) {
-    const educacion = data.educacion
+    const educacion = dato.educacion
     const consulta = 'UPDATE nna SET educacional_id = $1 WHERE id = $2;'
     const values = [educacion, id]
     await data(consulta, values)
     return true
   } else if (tipo === 16) {
-    const curso = data.curso
+    const curso = dato.curso
     const consulta = 'UPDATE nna SET curso_id = $1 WHERE id = $2;'
     const values = [curso, id]
     await data(consulta, values)
@@ -252,33 +252,33 @@ export const modificarDatos = async (datos) => {
 export const modificarDatosAdulto = async (datos) => {
   const tipo = datos.tipo
   const id = datos.id
-  const data = datos.data
+  const dato = datos.data
   if (tipo === 17) {
-    const nombre = data.nombre
+    const nombre = dato.nombre
     const consulta = 'UPDATE adulto SET responsable = $1 WHERE id = $2;'
     const values = [nombre, id]
     await data(consulta, values)
     return true
   } else if (tipo === 18) {
-    const rut = data.rut
+    const rut = dato.rut
     const consulta = 'UPDATE adulto SET run = $1 WHERE id = $2;'
     const values = [rut, id]
     await data(consulta, values)
     return true
   } else if (tipo === 19) {
-    const fono = data.fono
+    const fono = dato.fono
     const consulta = 'UPDATE adulto SET fono = $1 WHERE id = $2;'
     const values = [fono, id]
     await data(consulta, values)
     return true
   } else if (tipo === 20) {
-    const labor = data.labor
+    const labor = dato.labor
     const consulta = 'UPDATE adulto SET labores = $1 WHERE id = $2;'
     const values = [labor, id]
     await data(consulta, values)
     return true
   } else if (tipo === 21) {
-    const nacimiento = data.nacimiento
+    const nacimiento = dato.nacimiento
     const consulta = 'UPDATE adulto SET nacimiento = $1 WHERE id = $2;'
     const values = [nacimiento, id]
     await data(consulta, values)
@@ -321,7 +321,7 @@ export const insertProrroga = async (date, id) => {
   return true
 }
 
-export const insertNnj = async ({ datos }) => {
+export const insertNnj = async (datos) => {
   const id = datos.id
   const nombre = datos.nombre
   const nacimiento = datos.nacimiento
@@ -344,7 +344,7 @@ export const insertNnj = async ({ datos }) => {
   const values = [id, nombre, nacimiento, rut, domicilio, ingreso, causa, adulto, tratante, salud, educacion, motivo, juzgado, parentesco, comuna, nacion, curso, genero]
   await data(datosNna, values)
   const informe = 'INSERT INTO informes (nna_id, numero) VALUES ($1, $2);'
-  const valores = [id, 1, false, false]
+  const valores = [id, 1]
   await data(informe, valores)
   return true
 }

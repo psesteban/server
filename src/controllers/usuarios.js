@@ -78,7 +78,7 @@ export const putProrroga = (req, res) => sql.insertProrroga(req.body.date, req.b
   .catch((error) => res.status(500).json(error)
   )
 // POST
-export const postNna = (req, res) => sql.insertNnj(req.body.data)
+export const postNna = (req, res) => sql.insertNnj(req.body.datos)
   .then((result) => res.status(200).json(result))
   .catch((error) => res.status(500).json(error)
   )
