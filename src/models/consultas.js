@@ -436,3 +436,9 @@ export const getProfesionales = async (id) => {
   const values = [id]
   return await data(consulta, values)
 }
+
+export const getAtrasos = async (id) => {
+  const consulta = "SELECT nna.ingreso + (informes.numero * INTERVAL '3 MONTH') AS fecha_atraso, nna.nombre FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id WHERE nna.ingreso + (informes.numero * INTERVAL '3 MONTH') < CURRENT_DATE AND nna.psico_id = $1;"
+  const values = [id]
+  return await data(consulta, values)
+}

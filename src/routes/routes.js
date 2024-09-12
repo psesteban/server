@@ -39,4 +39,7 @@ router.route('/logros')
   .get(authMiddleware, controller.getLogro)
   .post(authMiddlewareAdmin, controller.postLogro)
   .delete(authMiddlewareAdmin, controller.deleteLogro)
+router.route('/atrasos')
+  .get(controller.getAtrasos)
+
 export default router
