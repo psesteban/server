@@ -146,7 +146,7 @@ export const checkInforme = async (nna) => {
   await data(consulta, values)
   return true
 }
-export const modificarDatos = async (datos) => {
+export const modificarDatos = async ({ datos }) => {
   const tipo = datos.tipo
   const id = datos.id
   const dato = datos.data
