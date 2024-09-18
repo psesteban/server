@@ -41,5 +41,13 @@ router.route('/logros')
   .delete(authMiddlewareAdmin, controller.deleteLogro)
 router.route('/atrasos')
   .get(controller.getAtrasos)
+router.route('/tareas')
+  .get(authMiddleware, controller.getTareas)
+  .put(authMiddleware, controller.putTarea)
+router.route('/task')
+  .get(authMiddlewareAdmin, controller.getTodasTareas)
+  .post(authMiddlewareAdmin, controller.posTarea)
+  .put(authMiddlewareAdmin, controller.putTarea)
+  .delete(authMiddlewareAdmin, controller.deleteTarea)
 
 export default router

@@ -442,3 +442,31 @@ export const getAtrasos = async (id) => {
   const values = [id]
   return await data(consulta, values)
 }
+
+export const getTareas = async (id) => {
+  const consulta = 'SELECT id, tarea, activa FROM tareas WHERE profesional = $1;'
+  const values = [id]
+  return await data(consulta, values)
+}
+export const deleteTarea = async (id) => {
+  const consulta = 'DELETE FROM tareas WHERE id = $1;'
+  const values = [id]
+  await data(consulta, values)
+  return true
+}
+export const putTarea = async (id) => {
+  const consulta = 'UPDATE tareas SET activa = NOT activa WHERE id = $1;'
+  const values = [id]
+  return await data(consulta, values)
+}
+export const postTarea = async ({ tareas }) => {
+  const { tarea, id } = tareas
+  const consulta = 'INSERT INTO tareas (tarea, profesional) VALUES ($1, $2);'
+  const values = [tarea, id]
+  return await data(consulta, values)
+}
+export const todoTareas = async (id) => {
+  const consulta = 'SELECT tareas.id, tareas.tarea, tareas.profesional, profesional.nombre  FROM tareas RIGHT JOIN profesional ON tareas.profesional = profesional.id WHERE profesional.asesoria = $1;'
+  const values = [id]
+  return await data(consulta, values)
+}
