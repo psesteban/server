@@ -141,260 +141,168 @@ export const getTablas = async () => {
 }
 
 export const checkInforme = async (nna) => {
-  try {
-    const consulta = 'UPDATE informes SET numero = numero + 1 WHERE nna_id = $1;'
-    const values = [nna]
-    await data(consulta, values)
-    return true
-  } catch (error) {
-    return error
-  }
+  const consulta = 'UPDATE informes SET numero = numero + 1 WHERE nna_id = $1;'
+  const values = [nna]
+  await data(consulta, values)
+  return true
 }
-export const modificarDatos = async (datos) => {
+export const modificarDatos = async ({ datos }) => {
   const tipo = datos.tipo
   const id = datos.id
-  const data = datos.data
+  const dato = datos.data
   if (tipo === 1) {
-    try {
-      const nombre = data.nombre
-      const consulta = 'UPDATE nna SET nombre = $1 WHERE id = $2;'
-      const values = [nombre, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const nombre = dato.nombre
+    const consulta = 'UPDATE nna SET nombre = $1 WHERE id = $2;'
+    const values = [nombre, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 2) {
-    try {
-      const rut = data.rut
-      const consulta = 'UPDATE nna SET rut = $1 WHERE id = $2;'
-      const values = [rut, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const rut = dato.rut
+    const consulta = 'UPDATE nna SET rut = $1 WHERE id = $2;'
+    const values = [rut, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 3) {
-    try {
-      const genero = data.genero
-      const consulta = 'UPDATE nna SET gen_id = $1 WHERE id = $2;'
-      const values = [genero, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const genero = dato.genero
+    const consulta = 'UPDATE nna SET gen_id = $1 WHERE id = $2;'
+    const values = [genero, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 4) {
-    try {
-      const nacion = data.nacion
-      const consulta = 'UPDATE nna SET nacionalidad_id = $1 WHERE id = $2;'
-      const values = [nacion, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const nacion = dato.nacion
+    const consulta = 'UPDATE nna SET nacionalidad_id = $1 WHERE id = $2;'
+    const values = [nacion, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 5) {
-    try {
-      const domicilio = data.domicilio
-      const consulta = 'UPDATE nna SET domicilio = $1 WHERE id = $2;'
-      const values = [domicilio, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const domicilio = dato.domicilio
+    const consulta = 'UPDATE nna SET domicilio = $1 WHERE id = $2;'
+    const values = [domicilio, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 6) {
-    try {
-      const comuna = data.comuna
-      const consulta = 'UPDATE nna SET comuna_id = $1 WHERE id = $2;'
-      const values = [comuna, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const comuna = dato.comuna
+    const consulta = 'UPDATE nna SET comuna_id = $1 WHERE id = $2;'
+    const values = [comuna, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 7) {
-    try {
-      const nacimiento = data.nacimiento
-      const consulta = 'UPDATE nna SET nac = $1 WHERE id = $2;'
-      const values = [nacimiento, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const nacimiento = dato.nacimiento
+    const consulta = 'UPDATE nna SET nac = $1 WHERE id = $2;'
+    const values = [nacimiento, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 8) {
-    try {
-      const tratante = data.tratante
-      const consulta = 'UPDATE nna SET psico_id = $1 WHERE id = $2;'
-      const values = [tratante, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const tratante = dato.tratante
+    const consulta = 'UPDATE nna SET psico_id = $1 WHERE id = $2;'
+    const values = [tratante, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 9) {
-    try {
-      const causa = data.causa
-      const consulta = 'UPDATE nna SET rit = $1 WHERE id = $2;'
-      const values = [causa, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const causa = dato.causa
+    const consulta = 'UPDATE nna SET rit = $1 WHERE id = $2;'
+    const values = [causa, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 10) {
-    try {
-      const juzgado = data.juzgado
-      const consulta = 'UPDATE nna SET juzgado_id = $1 WHERE id = $2;'
-      const values = [juzgado, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const juzgado = dato.juzgado
+    const consulta = 'UPDATE nna SET juzgado_id = $1 WHERE id = $2;'
+    const values = [juzgado, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 11) {
-    try {
-      const ingreso = data.ingreso
-      const consulta = 'UPDATE nna SET ingreso = $1 WHERE id = $2;'
-      const values = [ingreso, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const ingreso = dato.ingreso
+    const consulta = 'UPDATE nna SET ingreso = $1 WHERE id = $2;'
+    const values = [ingreso, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 12) {
-    try {
-      const motivo = data.motivo
-      const consulta = 'UPDATE nna SET motivo_id = $1 WHERE id = $2;'
-      const values = [motivo, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const motivo = dato.motivo
+    const consulta = 'UPDATE nna SET motivo_id = $1 WHERE id = $2;'
+    const values = [motivo, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 13) {
-    try {
-      const parentesco = data.parentesco
-      const consulta = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
-      const values = [parentesco, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const parentesco = dato.parentesco
+    const consulta = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
+    const values = [parentesco, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 14) {
-    try {
-      const salud = data.salud
-      const consulta = 'UPDATE nna SET salud_id = $1 WHERE id = $2;'
-      const values = [salud, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const salud = dato.salud
+    const consulta = 'UPDATE nna SET salud_id = $1 WHERE id = $2;'
+    const values = [salud, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 15) {
-    try {
-      const educacion = data.educacion
-      const consulta = 'UPDATE nna SET educacional_id = $1 WHERE id = $2;'
-      const values = [educacion, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const educacion = dato.educacion
+    const consulta = 'UPDATE nna SET educacional_id = $1 WHERE id = $2;'
+    const values = [educacion, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 16) {
-    try {
-      const curso = data.curso
-      const consulta = 'UPDATE nna SET curso_id = $1 WHERE id = $2;'
-      const values = [curso, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const curso = dato.curso
+    const consulta = 'UPDATE nna SET curso_id = $1 WHERE id = $2;'
+    const values = [curso, id]
+    await data(consulta, values)
+    return true
   }
 }
 
 export const modificarDatosAdulto = async (datos) => {
   const tipo = datos.tipo
   const id = datos.id
-  const data = datos.data
+  const dato = datos.data
   if (tipo === 17) {
-    try {
-      const nombre = data.nombre
-      const consulta = 'UPDATE adulto SET responsable = $1 WHERE id = $2;'
-      const values = [nombre, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const nombre = dato.nombre
+    const consulta = 'UPDATE adulto SET responsable = $1 WHERE id = $2;'
+    const values = [nombre, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 18) {
-    try {
-      const rut = data.rut
-      const consulta = 'UPDATE adulto SET run = $1 WHERE id = $2;'
-      const values = [rut, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const rut = dato.rut
+    const consulta = 'UPDATE adulto SET run = $1 WHERE id = $2;'
+    const values = [rut, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 19) {
-    try {
-      const fono = data.fono
-      const consulta = 'UPDATE adulto SET fono = $1 WHERE id = $2;'
-      const values = [fono, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const fono = dato.fono
+    const consulta = 'UPDATE adulto SET fono = $1 WHERE id = $2;'
+    const values = [fono, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 20) {
-    try {
-      const labor = data.labor
-      const consulta = 'UPDATE adulto SET labores = $1 WHERE id = $2;'
-      const values = [labor, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const labor = dato.labor
+    const consulta = 'UPDATE adulto SET labores = $1 WHERE id = $2;'
+    const values = [labor, id]
+    await data(consulta, values)
+    return true
   } else if (tipo === 21) {
-    try {
-      const nacimiento = data.nacimiento
-      const consulta = 'UPDATE adulto SET nacimiento = $1 WHERE id = $2;'
-      const values = [nacimiento, id]
-      await data(consulta, values)
-      return true
-    } catch (error) {
-      return error
-    }
+    const nacimiento = dato.nacimiento
+    const consulta = 'UPDATE adulto SET nacimiento = $1 WHERE id = $2;'
+    const values = [nacimiento, id]
+    await data(consulta, values)
+    return true
   }
 }
 export const deleteNna = async (id) => {
-  try {
-    const adulto = 'SELECT adulto_id FROM nna WHERE id = $1;'
-    const borradoInforme = 'DELETE FROM informes WHERE nna_id = $1;'
-    const values = [id]
-    await data(borradoInforme, values)
-    const adultoResponsable = await data(adulto, values)
-    const { adulto_id: idAdulto } = adultoResponsable[0]
-    const consulta = 'DELETE FROM nna WHERE id = $1;'
-    const consultaAdulto = 'SELECT COUNT(*) FROM nna where adulto_id = $1;'
-    const borrarAdulto = 'DELETE FROM adulto WHERE id = $1;'
-    const idValue = [idAdulto]
-    const consultaotrosNna = await data(consultaAdulto, idValue)
-    const { count } = consultaotrosNna[0]
-    if (count === 1) {
-      await data(consulta, values)
-      await data(borrarAdulto, idValue)
-    } else if (count < 1) {
-      await data(consulta, values)
-    }
-  } catch (error) {
-    return error
+  const adulto = 'SELECT adulto_id FROM nna WHERE id = $1;'
+  const borradoInforme = 'DELETE FROM informes WHERE nna_id = $1;'
+  const values = [id]
+  await data(borradoInforme, values)
+  const adultoResponsable = await data(adulto, values)
+  const { adulto_id: idAdulto } = adultoResponsable[0]
+  const consulta = 'DELETE FROM nna WHERE id = $1;'
+  const consultaAdulto = 'SELECT COUNT(*) FROM nna where adulto_id = $1;'
+  const borrarAdulto = 'DELETE FROM adulto WHERE id = $1;'
+  const idValue = [idAdulto]
+  const consultaotrosNna = await data(consultaAdulto, idValue)
+  const { count } = consultaotrosNna[0]
+  if (count === 1) {
+    await data(consulta, values)
+    await data(borrarAdulto, idValue)
+  } else if (count < 1) {
+    await data(consulta, values)
   }
   return true
 }
@@ -406,18 +314,14 @@ const cambiarEstadoProrroga = async (id) => {
 }
 
 export const insertProrroga = async (date, id) => {
-  try {
-    const consulta = 'UPDATE nna SET prorroga = $1 WHERE id = $2;'
-    const values = [date, id]
-    cambiarEstadoProrroga(id)
-    await data(consulta, values)
-    return true
-  } catch (error) {
-    return error
-  }
+  const consulta = 'UPDATE nna SET prorroga = $1 WHERE id = $2;'
+  const values = [date, id]
+  cambiarEstadoProrroga(id)
+  await data(consulta, values)
+  return true
 }
 
-export const insertNnj = async ({ datos }) => {
+export const insertNnj = async (datos) => {
   const id = datos.id
   const nombre = datos.nombre
   const nacimiento = datos.nacimiento
@@ -436,17 +340,13 @@ export const insertNnj = async ({ datos }) => {
   const educacion = datos.educacion
   const curso = datos.curso
   const parentesco = datos.parentesco
-  try {
-    const datosNna = 'INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico_id, salud_id, educacional_id, motivo_id, juzgado_id, parentesco_id, comuna_id, nacionalidad_id, curso_id, gen_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);'
-    const values = [id, nombre, nacimiento, rut, domicilio, ingreso, causa, adulto, tratante, salud, educacion, motivo, juzgado, parentesco, comuna, nacion, curso, genero]
-    await data(datosNna, values)
-    const informe = 'INSERT INTO informes (nna_id, numero, informe_ps, informe_ts) VALUES ($1, $2, $3, $4);'
-    const valores = [id, 1, false, false]
-    return await data(informe, valores)
-  } catch (error) {
-    console.log(error)
-    return error
-  }
+  const datosNna = 'INSERT INTO nna (id, nombre, nac, rut, domicilio, ingreso, rit, adulto_id, psico_id, salud_id, educacional_id, motivo_id, juzgado_id, parentesco_id, comuna_id, nacionalidad_id, curso_id, gen_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);'
+  const values = [id, nombre, nacimiento, rut, domicilio, ingreso, causa, adulto, tratante, salud, educacion, motivo, juzgado, parentesco, comuna, nacion, curso, genero]
+  await data(datosNna, values)
+  const informe = 'INSERT INTO informes (nna_id, numero) VALUES ($1, $2);'
+  const valores = [id, 1]
+  await data(informe, valores)
+  return true
 }
 export const insertAdulto = async (e) => {
   const id = e.id
@@ -457,72 +357,50 @@ export const insertAdulto = async (e) => {
   const labores = e.labores
   const tsId = e.tsId
 
-  try {
-    const datosAdulto = 'INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES ($1, $2, $3, $4, $5, $6, $7);'
-    const values = [id, responsable, nacimiento, run, fono, labores, tsId]
-    await data(datosAdulto, values)
-    return true
-  } catch (error) {
-    console.log(error)
-    return error
-  }
+  const datosAdulto = 'INSERT INTO adulto (id, responsable, nacimiento, run, fono, labores, ts_id) VALUES ($1, $2, $3, $4, $5, $6, $7);'
+  const values = [id, responsable, nacimiento, run, fono, labores, tsId]
+  await data(datosAdulto, values)
+  return true
 }
 
 export const getDataNna = async (id) => {
-  try {
-    const consulta = 'SELECT nna.nombre, nna.nac, nna.rut, nna.domicilio, nna.ingreso, nna.rit, adulto.responsable, adulto.nacimiento, adulto.run, adulto.fono, adulto.labores, informes.numero, salud.salud, educacional.ed, motivo.motivo, juzgado.juzgado, comuna.comuna, parentesco.parentesco, nacionalidad.nacion, curso.curso, gen.gen FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id RIGHT JOIN adulto ON adulto.id = nna.adulto_id RIGHT JOIN salud ON salud.id = nna.salud_id RIGHT JOIN educacional ON educacional.id = nna.educacional_id RIGHT JOIN motivo ON motivo.id = nna.motivo_id RIGHT JOIN juzgado ON juzgado.id = nna.juzgado_id RIGHT JOIN parentesco ON parentesco.id = nna.parentesco_id RIGHT JOIN comuna ON comuna.id = nna.comuna_id RIGHT JOIN nacionalidad ON nacionalidad.id = nna.nacionalidad_id RIGHT JOIN curso ON curso.id = nna.curso_id RIGHT JOIN gen ON  gen.id = nna. gen_id WHERE nna.id = $1;'
-    const values = [id]
-    const resultados = await data(consulta, values)
-    return resultados
-  } catch (error) {
-    return error
-  }
+  const consulta = 'SELECT nna.nombre, nna.nac, nna.rut, nna.domicilio, nna.ingreso, nna.rit, adulto.responsable, adulto.nacimiento, adulto.run, adulto.fono, adulto.labores, informes.numero, salud.salud, educacional.ed, motivo.motivo, juzgado.juzgado, comuna.comuna, parentesco.parentesco, nacionalidad.nacion, curso.curso, gen.gen FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id RIGHT JOIN adulto ON adulto.id = nna.adulto_id RIGHT JOIN salud ON salud.id = nna.salud_id RIGHT JOIN educacional ON educacional.id = nna.educacional_id RIGHT JOIN motivo ON motivo.id = nna.motivo_id RIGHT JOIN juzgado ON juzgado.id = nna.juzgado_id RIGHT JOIN parentesco ON parentesco.id = nna.parentesco_id RIGHT JOIN comuna ON comuna.id = nna.comuna_id RIGHT JOIN nacionalidad ON nacionalidad.id = nna.nacionalidad_id RIGHT JOIN curso ON curso.id = nna.curso_id RIGHT JOIN gen ON  gen.id = nna. gen_id WHERE nna.id = $1;'
+  const values = [id]
+  const resultados = await data(consulta, values)
+  return resultados
 }
 
 export const changeAdult = async (datos) => {
   const idAdulto = datos.responsable
   const parentesco = datos.parentesco
   const idNna = datos.id
-  try {
-    const consulta = 'UPDATE nna SET adulto_id = $1 WHERE id = $2;'
-    const values = [idAdulto, idNna]
-    await data(consulta, values)
-    const consultaPar = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
-    const valorPar = [parentesco, idNna]
-    await data(consultaPar, valorPar)
-    return true
-  } catch (error) {
-    return error
-  }
+  const consulta = 'UPDATE nna SET adulto_id = $1 WHERE id = $2;'
+  const values = [idAdulto, idNna]
+  await data(consulta, values)
+  const consultaPar = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
+  const valorPar = [parentesco, idNna]
+  await data(consultaPar, valorPar)
+  return true
 }
 
 export const addAnalisis = async (id, fecha, resumen, url) => {
-  try {
-    const consulta = 'UPDATE nna SET analisis = $1, fecha_analisis = $2, url_analisis = $3  WHERE id = $4;'
-    const values = [resumen, fecha, url, id]
-    await data(consulta, values)
-    return true
-  } catch (error) {
-    console.log(error)
-    return error
-  }
+  const consulta = 'UPDATE nna SET analisis = $1, fecha_analisis = $2, url_analisis = $3  WHERE id = $4;'
+  const values = [resumen, fecha, url, id]
+  await data(consulta, values)
+  return true
 }
 
 export const modificarNnj = async (datos) => {
   const idAdulto = datos.responsable
   const parentesco = datos.parentesco
   const idNna = datos.id
-  try {
-    const consulta = 'UPDATE nna SET adulto_id = $1 WHERE id = $2;'
-    const values = [idAdulto, idNna]
-    await data(consulta, values)
-    const consultaPar = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
-    const valorPar = [parentesco, idNna]
-    await data(consultaPar, valorPar)
-    return true
-  } catch (error) {
-    return error
-  }
+  const consulta = 'UPDATE nna SET adulto_id = $1 WHERE id = $2;'
+  const values = [idAdulto, idNna]
+  await data(consulta, values)
+  const consultaPar = 'UPDATE nna SET parentesco_id = $1 WHERE id = $2;'
+  const valorPar = [parentesco, idNna]
+  await data(consultaPar, valorPar)
+  return true
 }
 
 export const addLogro = async ({ datos }) => {
@@ -530,53 +408,65 @@ export const addLogro = async ({ datos }) => {
   const logro = datos.logro
   const medalla = datos.medalla
   const contenido = datos.contenido
-  try {
-    const consulta = 'INSERT INTO logros (profesional_id, logro, medalla, contenido) VALUES ($1, $2, $3, $4);'
-    const values = [id, logro, medalla, contenido]
-    await data(consulta, values)
-    return true
-  } catch (error) {
-    console.log(error)
-    return error
-  }
+  const consulta = 'INSERT INTO logros (profesional_id, logro, medalla, contenido) VALUES ($1, $2, $3, $4);'
+  const values = [id, logro, medalla, contenido]
+  await data(consulta, values)
+  return true
 }
 export const borrarLogro = async (id) => {
-  try {
-    const consulta = 'DELETE FROM logros WHERE id = $1;'
-    const values = [id]
-    await data(consulta, values)
-    return true
-  } catch (error) {
-    console.log(error)
-    return error
-  }
+  const consulta = 'DELETE FROM logros WHERE id = $1;'
+  const values = [id]
+  await data(consulta, values)
+  return true
 }
 
 export const logroPorId = async (id) => {
-  try {
-    const consulta = 'SELECT * FROM logros WHERE profesional_id = $1;'
-    const values = [id]
-    return await data(consulta, values)
-  } catch (error) {
-    return error
-  }
+  const consulta = 'SELECT * FROM logros WHERE profesional_id = $1;'
+  const values = [id]
+  return await data(consulta, values)
 }
 
 export const getTodoLogros = async (id) => {
-  try {
-    const consulta = 'SELECT logros.id, logro, medalla, contenido, profesional.nombre, profesional_id  FROM logros RIGHT JOIN profesional ON profesional_id = profesional.id WHERE profesional.asesoria = $1;'
-    const values = [id]
-    return await data(consulta, values)
-  } catch (error) {
-    return error
-  }
+  const consulta = 'SELECT logros.id, logro, medalla, contenido, profesional.nombre, profesional_id  FROM logros RIGHT JOIN profesional ON profesional_id = profesional.id WHERE profesional.asesoria = $1;'
+  const values = [id]
+  return await data(consulta, values)
 }
 export const getProfesionales = async (id) => {
-  try {
-    const consulta = 'SELECT id, nombre FROM profesional WHERE asesoria = $1;'
-    const values = [id]
-    return await data(consulta, values)
-  } catch (error) {
-    return error
-  }
+  const consulta = 'SELECT id, nombre FROM profesional WHERE asesoria = $1;'
+  const values = [id]
+  return await data(consulta, values)
+}
+
+export const getAtrasos = async (id) => {
+  const consulta = "SELECT nna.ingreso + (informes.numero * INTERVAL '3 MONTH') AS fecha_atraso, nna.nombre FROM nna RIGHT JOIN informes ON informes.nna_id = nna.id WHERE nna.ingreso + (informes.numero * INTERVAL '3 MONTH') < CURRENT_DATE AND nna.psico_id = $1;"
+  const values = [id]
+  return await data(consulta, values)
+}
+
+export const getTareas = async (id) => {
+  const consulta = 'SELECT id, tarea, activa FROM tareas WHERE profesional = $1;'
+  const values = [id]
+  return await data(consulta, values)
+}
+export const deleteTarea = async (id) => {
+  const consulta = 'DELETE FROM tareas WHERE id = $1;'
+  const values = [id]
+  await data(consulta, values)
+  return true
+}
+export const putTarea = async (id) => {
+  const consulta = 'UPDATE tareas SET activa = NOT activa WHERE id = $1;'
+  const values = [id]
+  return await data(consulta, values)
+}
+export const postTarea = async ({ tareas }) => {
+  const { tarea, id } = tareas
+  const consulta = 'INSERT INTO tareas (tarea, profesional) VALUES ($1, $2);'
+  const values = [tarea, id]
+  return await data(consulta, values)
+}
+export const todoTareas = async (id) => {
+  const consulta = 'SELECT tareas.id, tareas.tarea, tareas.profesional, profesional.nombre  FROM tareas RIGHT JOIN profesional ON tareas.profesional = profesional.id WHERE profesional.asesoria = $1;'
+  const values = [id]
+  return await data(consulta, values)
 }
