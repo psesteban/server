@@ -475,3 +475,8 @@ export const postCenter = async (name) => {
   const values = [name]
   return await data(consulta, values)
 }
+export const postCenterEducation = async (name) => {
+  const consulta = 'INSERT INTO educacional(ed) VALUES($1) RETURNING id;'
+  const values = [name]
+  return await data(consulta, values)
+}
