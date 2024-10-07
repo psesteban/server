@@ -49,5 +49,7 @@ router.route('/task')
   .post(authMiddlewareAdmin, controller.posTarea)
   .put(authMiddlewareAdmin, controller.putTarea)
   .delete(authMiddlewareAdmin, controller.deleteTarea)
+router.route('/center')
+  .post(authMiddlewareAdmin, controller.postCenter)
 
 export default router

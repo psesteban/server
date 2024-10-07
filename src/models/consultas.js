@@ -470,3 +470,8 @@ export const todoTareas = async (id) => {
   const values = [id]
   return await data(consulta, values)
 }
+export const postCenter = async (name) => {
+  const consulta = 'INSERT INTO salud(salud) VALUES($1) RETURNING id;'
+  const values = [name]
+  return await data(consulta, values)
+}

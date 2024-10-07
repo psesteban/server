@@ -110,6 +110,10 @@ export const postAdulto = (req, res) => sql.insertAdulto(req.body.data)
   .then((result) => res.status(200).json(result))
   .catch((error) => res.status(500).json(error)
   )
+export const postCenter = (req, res) => sql.postCenter(req.body.input)
+  .then((result) => res.status(200).json(result))
+  .catch((error) => res.status(500).json(error)
+  )
 
 // DELETE
 export const deleteNna = (req, res) => sql.deleteNna(req.body.selectId)
